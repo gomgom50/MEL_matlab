@@ -1,19 +1,3 @@
-% Der er forsøgt med følgende setup i kommando vinduet.
-%% - zoner = 13
-%% - billettype = 'kontant'
-%% - alder = 'barn'
-%%% Resultat: 65 // Korrekt svar.
-
-%% - zoner = 27
-%% - billettype = 'kontant'
-%% - alder = 'barn'
-%%% Error: 'Zoner skal være ml. 2 og 26'
-
-%% - zoner = 10
-%% - billettype = 'kort'
-%% - alder = 'barn'
-%%% Error: 'Ugyldig billetype'
-
 function pris = billettakst(zoner,billettype,alder)
 if zoner <= 2 || zoner > 26, error('Zoner skal være ml. 2 og 26'), end
 if strcmp(billettype,'kontant')
