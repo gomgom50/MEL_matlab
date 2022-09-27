@@ -1,6 +1,7 @@
 classdef tandhjuls_lige_dimensionering
-    %UNTITLED2 Summary of this class goes here
-    %   Detailed explanation goes here
+    %Dimensionerings udregninger for LIGE tandhjul
+    % Denne class indeholder kun udregninger som har med lige tandhjul at
+    % gøre. Skråtandet tandhjuls findes i en anden class. 
 
     properties
     end
