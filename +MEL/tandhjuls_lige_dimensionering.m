@@ -297,6 +297,39 @@ classdef tandhjuls_lige_dimensionering
             end
         end
 
+        function svar = Tandtopdiameter_via_d_m(d_a, d, m) 
+            % Tandfodsdiameter: kan udregne Tandfodsdiameter,
+            % Delecirkeldiameter eller modul, Indsæt [] på manglende værdigs plads 
+            % variabler
+            % d_a == d + 2 * m
+            % Input:
+            % d_f = Tandfodsdiameter
+            % d = Delecirkeldiameter
+            % m = modul
+            % Output:
+            % Outputter ud efter hvad er tomt.
+            if isempty(d_a) 
+                syms d_a
+                disp("Udregner d_f via d og m") 
+                eq = d_a == d + 2 * m; 
+                displayFormula("d_a == d + 2 * m")
+                svar = solve(eq, d_a);   
+            elseif isempty(d) 
+                syms d
+                disp("Udregner d via d_f og m") 
+                eq = d_a == d + 2 * m; 
+                displayFormula("d_a == d + 2 * m")
+                svar = solve(eq, d);   
+
+            elseif isempty(m) 
+                syms m
+                disp("Udregner m via d_f og d") 
+                eq = d_a == d + 2 * m; 
+                displayFormula("d_a == d + 2 * m")
+                svar = solve(eq, m); 
+            end
+        end
+
         function svar = Tandfodsdiameter_via_d_m(d_f, d, m) 
             % Tandfodsdiameter: kan udregne Tandfodsdiameter,
             % Delecirkeldiameter eller modul, Indsæt [] på manglende værdigs plads 
@@ -329,5 +362,38 @@ classdef tandhjuls_lige_dimensionering
                 svar = solve(eq, m); 
             end
         end
+
+        function svar = Tandfodsdiameter_via_d_b(d_f, d, b) 
+            % Tandtopdiameter: kan udregne Tandtopdiameter,
+            % Delecirkeldiameter eller Tandtophøjde , Indsæt [] på manglende værdigs plads 
+            % variabler
+            % d_f == d - 2 * b
+            % Input:
+            % d_a = Tandtopdiameter
+            % d = Delecirkeldiameter
+            % a = Tandtophøjde
+            % Output:
+            % Outputter ud efter hvad er tomt.
+            if isempty(d_f) 
+                syms d_f 
+                disp("Udregner d_f via d og a") 
+                eq = d_f == d - 2 * b; 
+                displayFormula("d_f == d - 2 * b")
+                svar = solve(eq, d_f);
+            elseif isempty(d) 
+                syms d 
+                disp("Udregner d via d_a og a") 
+                eq = d_f == d - 2 * b; 
+                displayFormula("d_f == d - 2 * b")
+                svar = solve(eq, d);                
+            elseif isempty(b) 
+                syms b
+                disp("Udregner b via d_a og d") 
+                eq = d_f == d - 2 * b; 
+                displayFormula("d_f == d - 2 * b")
+                svar = solve(eq, b);    
+            end
+        end
+
     end
 end
