@@ -188,7 +188,7 @@ classdef tandhjuls_lige_dimensionering
             % variabler
             % c == 0.25 * m
             % Input:
-            % p = Frigang
+            % c = Frigang
             % m = modul
             % Output:
             % Outputter ud efter hvad er tomt.
@@ -208,7 +208,7 @@ classdef tandhjuls_lige_dimensionering
         end
 
         function svar = Tandhoejde_via_a_b(h_t, a, b) 
-            % Frigang: kan udregne Tandhoejde, addendum/tandtophøjde, eller
+            % Tandhoejde_via_a_b: kan udregne Tandhoejde, addendum/tandtophøjde, eller
             % dedendum/tandfordshøjde, Indsæt [] på manglende værdigs plads 
             % variabler
             % h_t == a + b
