@@ -1,5 +1,5 @@
 function pris = billettakst(zoner,billettype,alder)
-if zoner <= 2 || zoner > 26, error('Zoner skal være ml. 2 og 26'), end
+if zoner < 2 || zoner > 26, error('Zoner skal være ml. 2 og 26'), end
 if strcmp(billettype,'kontant')
   if zoner <= 2
     pris = 10*zoner + 2;
