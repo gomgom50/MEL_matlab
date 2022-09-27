@@ -7,7 +7,7 @@ classdef tandhjuls_lige_dimensionering
     end
 
     methods (Static)
-        function svar = delecirkeldiameter_via_m_N(dcd, N, mn) %ændre return værdig ti lat være mere global og putter dcd ind som indput, fjerner også phi som input for og seperere den i en ny ligning
+        function svar = delecirkeldiameter_via_m_N(d, N, mn) %ændre return værdig ti lat være mere global og putter dcd ind som indput, fjerner også phi som input for og seperere den i en ny ligning
             % delecirkeldiameter_via_modul: kan udregne Delcirkel diameter,
             % Tandantal og modul. Indsæt [] på manglende værdigs plads 
             % variabler
@@ -18,31 +18,31 @@ classdef tandhjuls_lige_dimensionering
             % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt. 
-            if isempty(dcd) %dcd er tomt så vi udregner dcd 
-                syms dcd 
+            if isempty(d) %dcd er tomt så vi udregner dcd 
+                syms d 
                 disp("Udregner dcd via N og modul") 
-                eq = dcd == N * mn; %dette er den eneste værdig vi bruger, der er farligt at sætte en variabel = med nået i en function da den kan usynligt overskrive en anden variabel med samme navn
+                eq = d == N * mn; %dette er den eneste værdig vi bruger, der er farligt at sætte en variabel = med nået i en function da den kan usynligt overskrive en anden variabel med samme navn
                 displayFormula("d1 == N * mn") %
-                svar = solve(eq, dcd); %svar som er vores return værdig sættes lig svaret. 
+                svar = solve(eq, d); %svar som er vores return værdig sættes lig svaret. 
                 
             elseif isempty(N)
                 syms N 
                 disp("Udregner N via dcd og modul") 
-                eq = dcd == N * mn; 
+                eq = d == N * mn; 
                 displayFormula("d1 == N * mn") 
                 svar = solve(eq, N); 
 
             elseif isempty(mn)
                 syms mn 
                 disp("Udregner modul via dcd og N") 
-                eq = dcd == N * mn; 
+                eq = d == N * mn; 
                 displayFormula("d1 == N * mn") 
                 svar = solve(eq, mn);
  
             end
         end
 
-        function svar = Grundcirkel_Diameter_via_dcd_phi(d_b, dcd, phi_deg) 
+        function svar = Grundcirkel_Diameter_via_d_phi(d_b, d, phi_deg) 
             % Grundcirkel_Diameter: kan udregne Grundcirkeldiameter,
             % delcirkeldiameter og angrebsvinkel. Indsæt [] på manglende værdigs plads 
             % variabler
@@ -56,21 +56,21 @@ classdef tandhjuls_lige_dimensionering
             if isempty(d_b) 
                 syms d_b 
                 disp("Udregner d_b via dcd og phi_deg") 
-                eq = d_b == dcd * cosd(phi_deg); 
+                eq = d_b == d * cosd(phi_deg); 
                 displayFormula("d_b == dcd * cosd(phi_deg)")
                 svar = solve(eq, d_b); 
 
-            elseif isempty(dcd) 
-                syms dcd 
+            elseif isempty(d) 
+                syms d 
                 disp("Udregner dcd via d_b og phi_deg") 
-                eq = d_b == dcd * cosd(phi_deg); 
+                eq = d_b == d * cosd(phi_deg); 
                 displayFormula("d_b == dcd * cosd(phi_deg)")
-                svar = solve(eq, dcd); 
+                svar = solve(eq, d); 
 
             elseif isempty(phi_deg) 
                 syms phi_deg 
                 disp("Udregner phi via d_b og dcd") 
-                eq = d_b == dcd * cosd(phi_deg); 
+                eq = d_b == d * cosd(phi_deg); 
                 displayFormula("d_b == dcd * cosd(phi_deg)")
                 svar = solve(eq, phi_deg); 
 
