@@ -394,6 +394,5 @@ classdef tandhjuls_lige_dimensionering
                 svar = solve(eq, b);    
             end
         end
-
     end
 end
