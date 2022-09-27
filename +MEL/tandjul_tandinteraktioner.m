@@ -1,6 +1,6 @@
 classdef tandjul_tandinteraktioner
     % Diverse tandinteraktioners udregninger 
-    %    
+    %   Nogle af disse funktioner er ikke fuldt dynamiske og udregner kun specifikke ting.  
     methods (Static)
         function svar = ingrebsgraden_fuld_udledt (d_a1, d_a2, d_b1, d_b2, d_1, d_2, phi_deg, m)
             % ingrebsgraden_fuld_udledt: Udregner ingrebsgraden fuld udledt: 
