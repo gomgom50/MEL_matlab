@@ -1,5 +1,5 @@
 classdef Krafter_pa_tandhjul
-    % Krafter_på_tandhjul(W) indeholder udregninger af de 4 forskellige
+    % Krafter_på_tandhjul indeholder udregninger af de 4 forskellige
     % krafter der er imellem tandhjulene
     %   Husk at når der er en kraft fra det ene tandhjul på det andet
     %   så er der en lige s
