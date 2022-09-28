@@ -109,101 +109,101 @@ classdef tandhjuls_lige_dimensionering
             end
         end
 
-        function svar = Tandtophoejde_addendum_via_m(a, m) 
+        function svar = Tandtophoejde_addendum_via_m(a, mn) 
             % Tandtophoejde_addendum: kan udregne modul eller
             % tandtophøjde/addendum, Indsæt [] på manglende værdigs plads 
             % variabler
-            % a == m
+            % a == mn
             % Input:
             % a = Tandtophoejde_addendum
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(a) 
                 syms a 
-                disp("Udregner a via m") 
-                eq = a == m; 
-                displayFormula("a == m")
+                disp("Udregner a via mn") 
+                eq = a == mn; 
+                displayFormula("a == mn")
                 svar = solve(eq, a);
-            elseif isempty(m) 
-                syms m 
-                disp("Udregner m via a") 
-                eq = a == m; 
-                displayFormula("a == m")
-                svar = solve(eq, m);                         
+            elseif isempty(mn) 
+                syms mn 
+                disp("Udregner mn via a") 
+                eq = a == mn; 
+                displayFormula("a == mn")
+                svar = solve(eq, mn);                         
             end
         end
         
-        function svar = Tandfodshoejde_dedendum_via_m(b, m) 
+        function svar = Tandfodshoejde_dedendum_via_m(b, mn) 
             % Tandfodshoejde_dedendum: kan udregne modul eller
             % Tandfodshoejde/dedendum, Indsæt [] på manglende værdigs plads 
             % variabler
-            % b == 1.25 * m
+            % b == 1.25 * mn
             % Input:
             % b = Tandfodshoejde_dedendum
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(b) 
                 syms b 
-                disp("Udregner b via m") 
-                eq = b == 1.25 * m; 
-                displayFormula("b == 1.25 * m")
+                disp("Udregner b via mn") 
+                eq = b == 1.25 * mn; 
+                displayFormula("b == 1.25 * mn")
                 svar = solve(eq, b);
-            elseif isempty(m) 
-                syms m 
-                disp("Udregner m via b") 
-                eq = b == 1.25 * m; 
-                displayFormula("b == 1.25 * m")
-                svar = solve(eq, m);                         
+            elseif isempty(mn) 
+                syms mn 
+                disp("Udregner mn via b") 
+                eq = b == 1.25 * mn; 
+                displayFormula("b == 1.25 * mn")
+                svar = solve(eq, mn);                         
             end
         end
 
-        function svar = Deling_pitch_via_m(p, m) 
+        function svar = Deling_pitch_via_m(p, mn) 
             % Deling_pitch: kan udregne modul eller Deling/pitch, Indsæt [] på manglende værdigs plads 
             % variabler
-            % p == m * pi
+            % p == mn * pi
             % Input:
             % p = Deling/pitch
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(p) 
                 syms p 
-                disp("Udregner p via m") 
-                eq = p == m * pi; 
-                displayFormula("p == m * pi")
+                disp("Udregner p via mn") 
+                eq = p == mn * pi; 
+                displayFormula("p == mn * pi")
                 svar = solve(eq, p);
-            elseif isempty(m) 
-                syms m 
-                disp("Udregner m via p") 
-                eq = p == m * pi; 
-                displayFormula("p == m * pi")
-                svar = solve(eq, m);                         
+            elseif isempty(mn) 
+                syms mn 
+                disp("Udregner mn via p") 
+                eq = p == mn * pi; 
+                displayFormula("p == mn * pi")
+                svar = solve(eq, mn);                         
             end
         end
         
-        function svar = Frigang_via_m(c, m) 
+        function svar = Frigang_via_m(c, mn) 
             % Frigang: kan udregne modul eller Frigang, Indsæt [] på manglende værdigs plads 
             % variabler
-            % c == 0.25 * m
+            % c == 0.25 * mn
             % Input:
             % c = Frigang
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(c) 
                 syms c 
-                disp("Udregner c via m") 
-                eq = c == 0.25 * m; 
-                displayFormula("c == 0.25 * m")
+                disp("Udregner c via mn") 
+                eq = c == 0.25 * mn; 
+                displayFormula("c == 0.25 * mn")
                 svar = solve(eq, c);
-            elseif isempty(m) 
-                syms m 
-                disp("Udregner m via c") 
-                eq = c == 0.25 * m; 
-                displayFormula("c == 0.25 * m")
-                svar = solve(eq, m);                         
+            elseif isempty(mn) 
+                syms mn 
+                disp("Udregner mn via c") 
+                eq = c == 0.25 * mn; 
+                displayFormula("c == 0.25 * mn")
+                svar = solve(eq, mn);                         
             end
         end
 
@@ -239,28 +239,28 @@ classdef tandhjuls_lige_dimensionering
             end
         end
 
-        function svar = Tandbredde_via_m(F, faktor_3til5, m) 
+        function svar = Tandbredde_via_m(F, faktor_3til5, mn) 
             % Tandbredde: kan udregne Tandbredde, eller modul, Indsæt [] på manglende værdigs plads 
             % variabler, 
-            % F == faktor_3til5 * pi * m
+            % F == faktor_3til5 * pi * mn
             % Input:
             % F = Tandbredde
             % faktor_3til5 = en faktor som skal være imellem 3 - 5 
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(F) 
                 syms F 
-                disp("Udregner F via m") 
-                eq = F == faktor_3til5 * pi * m; 
-                displayFormula("F == faktor_3til5 * pi * m")
+                disp("Udregner F via mn") 
+                eq = F == faktor_3til5 * pi * mn; 
+                displayFormula("F == faktor_3til5 * pi * mn")
                 svar = solve(eq, F);
-            elseif isempty(m) 
-                syms m 
-                disp("Udregner m via F") 
-                eq = F == faktor_3til5 * pi * m; 
-                displayFormula("F == faktor_3til5 * pi * m")
-                svar = solve(eq, m);
+            elseif isempty(mn) 
+                syms mn 
+                disp("Udregner mn via F") 
+                eq = F == faktor_3til5 * pi * mn; 
+                displayFormula("F == faktor_3til5 * pi * mn")
+                svar = solve(eq, mn);
             end
         end
 
@@ -297,69 +297,69 @@ classdef tandhjuls_lige_dimensionering
             end
         end
 
-        function svar = Tandtopdiameter_via_d_m(d_a, d, m) 
+        function svar = Tandtopdiameter_via_d_m(d_a, d, mn) 
             % Tandfodsdiameter: kan udregne Tandfodsdiameter,
             % Delecirkeldiameter eller modul, Indsæt [] på manglende værdigs plads 
             % variabler
-            % d_a == d + 2 * m
+            % d_a == d + 2 * mn
             % Input:
             % d_f = Tandfodsdiameter
             % d = Delecirkeldiameter
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(d_a) 
                 syms d_a
-                disp("Udregner d_f via d og m") 
-                eq = d_a == d + 2 * m; 
-                displayFormula("d_a == d + 2 * m")
+                disp("Udregner d_f via d og mn") 
+                eq = d_a == d + 2 * mn; 
+                displayFormula("d_a == d + 2 * mn")
                 svar = solve(eq, d_a);   
             elseif isempty(d) 
                 syms d
-                disp("Udregner d via d_f og m") 
-                eq = d_a == d + 2 * m; 
-                displayFormula("d_a == d + 2 * m")
+                disp("Udregner d via d_f og mn") 
+                eq = d_a == d + 2 * mn; 
+                displayFormula("d_a == d + 2 * mn")
                 svar = solve(eq, d);   
 
-            elseif isempty(m) 
-                syms m
-                disp("Udregner m via d_f og d") 
-                eq = d_a == d + 2 * m; 
-                displayFormula("d_a == d + 2 * m")
-                svar = solve(eq, m); 
+            elseif isempty(mn) 
+                syms mn
+                disp("Udregner mn via d_f og d") 
+                eq = d_a == d + 2 * mn; 
+                displayFormula("d_a == d + 2 * mn")
+                svar = solve(eq, mn); 
             end
         end
 
-        function svar = Tandfodsdiameter_via_d_m(d_f, d, m) 
+        function svar = Tandfodsdiameter_via_d_m(d_f, d, mn) 
             % Tandfodsdiameter: kan udregne Tandfodsdiameter,
             % Delecirkeldiameter eller modul, Indsæt [] på manglende værdigs plads 
             % variabler
-            % d_f == d - 2.5 * m
+            % d_f == d - 2.5 * mn
             % Input:
             % d_f = Tandfodsdiameter
             % d = Delecirkeldiameter
-            % m = modul
+            % mn = modul
             % Output:
             % Outputter ud efter hvad er tomt.
             if isempty(d_f) 
                 syms d_f
-                disp("Udregner d_f via d og m") 
-                eq = d_f == d - 2.5 * m; 
-                displayFormula("d_f == d - 2.5 * m")
+                disp("Udregner d_f via d og mn") 
+                eq = d_f == d - 2.5 * mn; 
+                displayFormula("d_f == d - 2.5 * mn")
                 svar = solve(eq, d_f);   
             elseif isempty(d) 
                 syms d
-                disp("Udregner d via d_f og m") 
-                eq = d_f == d - 2.5 * m; 
-                displayFormula("d_f == d - 2.5 * m")
+                disp("Udregner d via d_f og mn") 
+                eq = d_f == d - 2.5 * mn; 
+                displayFormula("d_f == d - 2.5 * mn")
                 svar = solve(eq, d);   
 
-            elseif isempty(m) 
-                syms m
-                disp("Udregner m via d_f og d") 
-                eq = d_f == d - 2.5 * m; 
-                displayFormula("d_f == d - 2.5 * m")
-                svar = solve(eq, m); 
+            elseif isempty(mn) 
+                syms mn
+                disp("Udregner mn via d_f og d") 
+                eq = d_f == d - 2.5 * mn; 
+                displayFormula("d_f == d - 2.5 * mn")
+                svar = solve(eq, mn); 
             end
         end
 
