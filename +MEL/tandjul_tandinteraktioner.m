@@ -2,10 +2,10 @@ classdef tandjul_tandinteraktioner
     % Diverse tandinteraktioners udregninger 
     %   Nogle af disse funktioner er ikke fuldt dynamiske og udregner kun specifikke ting.  
     methods (Static)
-        function svar = ingrebsgraden_fuld_udledt (d_a1, d_a2, d_b1, d_b2, d_1, d_2, phi_deg, mt)
+        function svar = ingrebsgraden_fuld_udledt (d_a1, d_a2, d_b1, d_b2, d_1, d_2, phi_deg, mn)
             % ingrebsgraden_fuld_udledt: Udregner ingrebsgraden fuld udledt: 
             % variabler
-            % m_c == (0.5*(sqrt(d_a1^2 - d_b1^2) + sqrt(d_a2^2 - d_b2^2))-((d_1+d_2)/2)*sind(phi_deg))/(pi*m*cosd(phi_deg))
+            % m_c == (0.5*(sqrt(d_a1^2 - d_b1^2) + sqrt(d_a2^2 - d_b2^2))-((d_1+d_2)/2)*sind(phi_deg))/(pi*mn*cosd(phi_deg))
             % Input:
             % d_a1 = Tandtopdiameter 1
             % d_a2 = Tandtopdiameter 2
@@ -19,7 +19,7 @@ classdef tandjul_tandinteraktioner
             % m_c = ingrebsgraden skal være > 1.2 for tilstrækligt ingreb
             syms m_c %laver var1 til en symbolsk variabel. 
             disp("Udregner ingrebsgraden via givende værdiger.") %printer hvad vi gør
-            eq = m_c == (0.5*(sqrt(d_a1^2 - d_b1^2) + sqrt(d_a2^2 - d_b2^2))-((d_1+d_2)/2)*sind(phi_deg))/(pi*mt*cosd(phi_deg)); %opskriv ligningen
+            eq = m_c == (0.5*(sqrt(d_a1^2 - d_b1^2) + sqrt(d_a2^2 - d_b2^2))-((d_1+d_2)/2)*sind(phi_deg))/(pi*mn*cosd(phi_deg)); %opskriv ligningen
             displayFormula("m_c == (0.5*(sqrt(d_a1^2 - d_b1^2) + sqrt(d_a2^2 - d_b2^2))-((d_1+d_2)/2)*sind(phi_deg))/(pi*m*cosd(phi_deg))") %vis formlen
             svar = solve(eq, m_c); %solve for variablen
         end
