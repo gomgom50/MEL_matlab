@@ -60,7 +60,7 @@ while i < 3
     elseif ~isempty(C) && ~isempty(d1) && isempty(d2)
         syms d2
         eq = C == (d1 + d2)/2;
-        d1 = solve(eq, d2)
+        d2 = solve(eq, d2)
 
     elseif ~isempty(C) && ~isempty(d2) && isempty(d1)
         syms d1
