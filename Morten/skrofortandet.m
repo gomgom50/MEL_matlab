@@ -4,6 +4,7 @@ if type == "Skråfortandet"
     N1 = input("N1 = ");
     N2 = input("N2 = ");
     N3 = input("N3 = ");
+    mn = input("Modul = ");
     mt = input("Tangentialmodul = ");
     C = input("Centerakseafstand = ");
     d1 = input("Delecirkeldiameter 1 = ");
@@ -13,10 +14,11 @@ if type == "Skråfortandet"
     db1 = input("Grundcirkeldiameter 1 = ");
     db2 = input("Grundcirkeldiameter 2 = ");
 
-    phi = input("Indgrebsvinkel i grader = ");
+    phi_n = input("Indgrebsvinkel i grader = ");
     psi = input("Skråvinkel i grader = ");
     
-    psi_t = input("Tangentialindgrebsvinkel i grader = ");
+    phi_t = input("Tangentialindgrebsvinkel i grader = ");
+    
 
     F = input("Tandbredde = ");
 
@@ -31,6 +33,28 @@ while i < 3
     % Tangentialmodul
     if isempty(mt) && ~isempty(mn) && ~isempty(psi)
         mt = mn/cosd(psi)
+
+    elseif isempty(mn) && ~isempty(mt) && ~isempty(psi)
+        mn = mt * cosd(psi)
+    
+    elseif isempty(psi) && ~isempty(mt) && ~isempty(mn)
+        psi = acos(mn/mt)
+    end
+
+    % Tangentialindgrebsvinkel
+    if isempty(phi_t) && ~isempty(phi_n) && ~isempty(psi)
+        phi_t = atand(tand(phi_n)/cosd(psi))
+
+    elseif isempty(phi_n) && ~isempty(phi_t) && ~isempty(psi)
+        eq = phi_t == atand(tand(phi_n)/cosd(psi));
+        phi_n = solve(eq, phi_n)
+
+    elseif isempty(psi) && ~isempty(phi_t) && ~isempty(phi_n)
+        eq = phi_t == atand(tand(phi_n)/cosd(psi));
+        psi = solve(eq, psi)
+    end
+    
+    %%% HERTIL %%%
 
     % Udregninger af delecirkeldiameter
     if isempty(d1) && ~isempty(N1) && ~isempty(mn)
@@ -76,23 +100,23 @@ while i < 3
 
     % Grundcirkeldiameter
 
-    if isempty(db1) && ~isempty(d1) && ~isempty(phi)
-        db1 = d1 * cosd(phi)
+    if isempty(db1) && ~isempty(d1) && ~isempty(phi_n)
+        db1 = d1 * cosd(phi_n)
 
-    elseif isempty(db2) && ~isempty(d2) && ~isempty(phi)
-        db2 = d2 * cosd(phi)
+    elseif isempty(db2) && ~isempty(d2) && ~isempty(phi_n)
+        db2 = d2 * cosd(phi_n)
 
-    elseif isempty(phi) && ~isempty(db1) && ~isempty(d1)
-        phi = acosd(db1/d1)
+    elseif isempty(phi_n) && ~isempty(db1) && ~isempty(d1)
+        phi_n = acosd(db1/d1)
 
-    elseif isempty(phi) && ~isempty(db2) && ~isempty(d2)
-        phi = acosd(db2/d2)
+    elseif isempty(phi_n) && ~isempty(db2) && ~isempty(d2)
+        phi_n = acosd(db2/d2)
 
-    elseif isempty(d1) && ~isempty(db1) && ~isempty(phi)
-        d1 = db1/cosd(phi)
+    elseif isempty(d1) && ~isempty(db1) && ~isempty(phi_n)
+        d1 = db1/cosd(phi_n)
 
-    elseif isempty(d2) && ~isempty(db2) && ~isempty(phi)
-        d2 = db2/cosd(phi)
+    elseif isempty(d2) && ~isempty(db2) && ~isempty(phi_n)
+        d2 = db2/cosd(phi_n)
 
     end
     
