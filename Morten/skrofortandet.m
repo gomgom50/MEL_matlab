@@ -1,4 +1,4 @@
-function skro = Skrofortandet(type, last)
+function skro = skrofortandet(type, last)
 if type == "skråfortandet"
     N_hjul = input("Antal tandhjul: ");
     N1 = input("N1 = ");
