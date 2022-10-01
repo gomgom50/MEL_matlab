@@ -12,11 +12,16 @@ if type == "skråfortandet"
     mt1 = input("Tangentialmodul 1 = ");
     mt2 = input("Tangentialmodul 2 = ");
 
-    F = input("Tandbredde = ");
-
     phi_n = input("Indgrebsvinkel i grader = ");
     psi = input("Skråvinkel i grader = ");
     phi_t = input("Tangentialindgrebsvinkel i grader = ");
+
+    F = input("Tandbredde = ");
+
+    i1 = input("Udvekslingsforhold 1 = ");
+    i2 = input("Udvekslingsforhold 2 = ");
+    i3 = input("Udvekslingsforhold 3 = ");
+    i4 = input("Udvekslingsforhold 4 = ");
     
     C = input("Centerakseafstand = ");
     d1 = input("Delecirkeldiameter 1 = ");
@@ -43,6 +48,29 @@ i = 0;
 while i < 4
     i = i+1;
     
+    % Udvekslingsforhold
+
+    if isempty(i1) && ~isempty(N1) && ~isempty(N2)
+        i1 = N2/N1
+
+    elseif isempty(i2) && ~isempty(N3) && ~isempty(N4)
+        i2 = N4/N3
+
+    elseif isempty(N1) && ~isempty(i1) && ~isempty(N2)
+        N1 = N2/i1
+
+    elseif isempty(N2) && ~isempty(N1) && ~isempty(i1)
+        N2 = i1 * N1
+
+    elseif isempty(N3) && ~isempty(N4) && ~isempty(i2)
+        N3 = N4/i2
+
+    elseif isempty(N4) && ~isempty(N3) && ~isempty(i2)
+        N4 = i2 * N3
+
+    end
+
+
     % Tangentialmodul
     if isempty(mt1) && ~isempty(mn1) && ~isempty(psi)
         disp("Tangentialmodul 1")
