@@ -11,6 +11,26 @@ if type == "ligefortandet" && last == "nej"
     N4 = input("N4 = ");
 
     mn = input("Modul = ");
+
+    phi = input("Indgrebsvinkel i grader = ");
+
+    F_f = input("Tandhjulsfaktor = ");
+
+    F1 = input("Tandhjulsbredde 1 = ");
+    F2 = input("Tandhjulsbredde 2 = ");
+    F3 = input("Tandhjulsbredde 3 = ");
+    F4 = input("Tandhjulsbredde 4 = ");
+
+    i1 = input("Udvekslingsforhold 1 = ");
+    i2 = input("Udvekslingsforhold 2 = ");
+    i3 = input("Udvekslingsforhold 3 = ");
+    i4 = input("Udvekslingsforhold 4 = ");
+
+    omega1 = input("Omdrejningshastighed 1 i rad/s = ");
+    omega2 = input("Omdrejningshastighed 2 i rad/s = ");
+    omega3 = input("Omdrejningshastighed 3 i rad/s = ");
+    omega4 = input("Omdrejningshastighed 4 i rad/s = ");
+
     C = input("Centerakseafstand = ");
 
     d1 = input("Delecirkeldiameter 1 = ");
@@ -23,8 +43,6 @@ if type == "ligefortandet" && last == "nej"
 
     da1 = input("Tandtopdiameter 1 = ");
     da2 = input("tandtopdiameter 2 = ");
-
-    phi = input("Indgrebsvinkel i grader = ");
 
     Ns = [N1 N2 N3 N4];
     ds = [d1 d2 d3 d4];
@@ -56,6 +74,7 @@ elseif type == "ligefortandet" && last == "ja"
     omega2 = input("Omdrejningshastighed 2 i rad/s = ");
     omega3 = input("Omdrejningshastighed 3 i rad/s = ");
     omega4 = input("Omdrejningshastighed 4 i rad/s = ");
+
 
     ad1 = input("Akseldiameter 1 = ");
     ad2 = input("Akseldiameter 2 = ");
@@ -218,7 +237,7 @@ while i < 3
     
     if isempty(F1) && ~isempty(F_f) && ~isempty(mn)
         disp("Tandhjulsbredde 1")
-        F1 = pi * F_f * mn + 2
+        F1 = pi * F_f * mn
 
     elseif isempty(F2) && ~isempty(F_f) && ~isempty(mn)
         disp("Tandhjulsbredde 2")
@@ -259,6 +278,7 @@ while i < 3
     if ~isempty(i1) && ~isempty(i2)
         disp("Total virkningsgrad")
         i_tot = i1 * i2
+    end
 
     % Vinkelhastigheder
 
@@ -278,45 +298,45 @@ while i < 3
         disp("Vinkelhastighed for gear 2")
         omega4 = omega3/i2
 
+    end
+
+    % Hastigheder
+    if ~isempty(omega1) && ~isempty(omega2) && ~isempty(d1) && ~isempty(d2)
+        disp("Hastighed for pinion 1")
+        Vp = d1/2 * omega1
+
+        disp("Hastighed for gear 1")
+        Vg = d2/2 * omega2
+
+    elseif ~isempty(omega3) && ~isempty(omega4) && ~isempty(d3) && ~isempty(d4)
+        disp("Hastighed for pinion 2")
+        Vp = d3/2 * omega3
+
+        disp("Hastighed for gear 2")
+        Vg = d4/2 * omega4
+    end
+
 end
-end
+
 %----------------------%
 %        LASTER        %
 %----------------------%
 
 % Momenter for aksler
-if ~isempty(T_last) && ~isempty(eta_leje) && ~isempty(eta_tdr)
-    disp("Moment for aksel 1")
-    Tp = T_last/(i1 * eta_tdr * eta_leje^4)
+if last == "ja"
+    if ~isempty(T_last) && ~isempty(eta_leje) && ~isempty(eta_tdr)
+        disp("Moment for aksel 1")
+        Tp = T_last/(i1 * eta_tdr * eta_leje^4)
 
+    end
+
+    % Tangentialkræfter
+    if ~isempty(Tp) && ~isempty(d1)
+        disp("Tangentialkræfter for pinion og gear - modsatrettede og lige store")
+        Wd1 = Tp/(d1/2)
+        Wd2 = Wd1
+    end
 end
-
-% Tangentialkræfter
-if ~isempty(Tp) && ~isempty(d1)
-    disp("Tangentialkræfter for pinion og gear - modsatrettede og lige store")
-    Wd1 = Tp/(d1/2)
-    Wd2 = Wd1
-end    
-    
-
-% Hastigheder
-if ~isempty(omega1) && ~isempty(omega2) && ~isempty(d1) && ~isempty(d2)
-    disp("Hastighed for pinion 1")
-    Vp = d1/2 * omega1
-    
-    disp("Hastighed for gear 1")
-    Vg = d2/2 * omega2
-
-elseif ~isempty(omega3) && ~isempty(omega4) && ~isempty(d3) && ~isempty(d4)
-    disp("Hastighed for pinion 2")
-    Vp = d3/2 * omega3
-    
-    disp("Hastighed for gear 2")
-    Vg = d4/2 * omega4
-
-
-end
-
     
 % Bøjningsspændinger i tandfoden
 
