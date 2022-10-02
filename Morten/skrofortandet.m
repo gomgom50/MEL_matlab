@@ -1,5 +1,6 @@
 function skro = skrofortandet(type, last)
-if type == "skråfortandet"
+
+if type == "skråfortandet" && last == "nej"
     N_hjul = input("Antal tandhjul: ");
     N1 = input("N1 = ");
     N2 = input("N2 = ");
@@ -16,12 +17,24 @@ if type == "skråfortandet"
     psi = input("Skråvinkel i grader = ");
     phi_t = input("Tangentialindgrebsvinkel i grader = ");
 
-    F = input("Tandbredde = ");
+    F_f = input("Tandhjulsfaktor = ");
+    delta_F = input("Pinion størrelsesændring = ");
+
+    F1 = input("Tandhjulsbredde 1 = ");
+    F2 = input("Tandhjulsbredde 2 = ");
+    F3 = input("Tandhjulsbredde 3 = ");
+    F4 = input("Tandhjulsbredde 4 = ");
 
     i1 = input("Udvekslingsforhold 1 = ");
     i2 = input("Udvekslingsforhold 2 = ");
     i3 = input("Udvekslingsforhold 3 = ");
     i4 = input("Udvekslingsforhold 4 = ");
+    i_tot = input("Total udvekslingsforhold = ");
+
+    omega1 = input("Omdrejningshastighed 1 i rad/s = ");
+    omega2 = input("Omdrejningshastighed 2 i rad/s = ");
+    omega3 = input("Omdrejningshastighed 3 i rad/s = ");
+    omega4 = input("Omdrejningshastighed 4 i rad/s = ");
     
     C = input("Centerakseafstand = ");
     d1 = input("Delecirkeldiameter 1 = ");
@@ -40,12 +53,69 @@ if type == "skråfortandet"
     da4 = input("tandtopdiameter 4 = ");
     
 
-    Ns = [N1 N2 N3];
-    ds = [d1 d2 d3];
+    Ns = [N1 N2 N3 N4];
+    ds = [d1 d2 d3 d4];
+end
+
+if type == "skråfortandet" && last == "ja"
+    N_hjul = input("Antal tandhjul: ");
+    N1 = input("N1 = ");
+    N2 = input("N2 = ");
+    N3 = input("N3 = ");
+    N4 = input("N4 = ");
+
+    mn1 = input("Modul 1 = ");
+    mn2 = input("Modul 2 = ");
+
+    mt1 = input("Tangentialmodul 1 = ");
+    mt2 = input("Tangentialmodul 2 = ");
+
+    phi_n = input("Indgrebsvinkel i grader = ");
+    psi = input("Skråvinkel i grader = ");
+    phi_t = input("Tangentialindgrebsvinkel i grader = ");
+
+    F_f = input("Tandhjulsfaktor = ");
+    delta_F = input("Pinion størrelsesændring");
+
+    F1 = input("Tandhjulsbredde 1 = ");
+    F2 = input("Tandhjulsbredde 2 = ");
+    F3 = input("Tandhjulsbredde 3 = ");
+    F4 = input("Tandhjulsbredde 4 = ");
+
+    i1 = input("Udvekslingsforhold 1 = ");
+    i2 = input("Udvekslingsforhold 2 = ");
+    i3 = input("Udvekslingsforhold 3 = ");
+    i4 = input("Udvekslingsforhold 4 = ");
+    i_tot = input("Total udvekslingsforhold = ");
+
+    omega1 = input("Omdrejningshastighed 1 i rad/s = ");
+    omega2 = input("Omdrejningshastighed 2 i rad/s = ");
+    omega3 = input("Omdrejningshastighed 3 i rad/s = ");
+    omega4 = input("Omdrejningshastighed 4 i rad/s = ");
+    
+    C = input("Centerakseafstand = ");
+    d1 = input("Delecirkeldiameter 1 = ");
+    d2 = input("Delecirkeldiameter 2 = ");
+    d3 = input("Delecirkeldiameter 3 = ");
+    d4 = input("Delecirkeldiameter 4 = ");
+
+    db1 = input("Grundcirkeldiameter 1 = ");
+    db2 = input("Grundcirkeldiameter 2 = ");
+    db3 = input("Grundcirkeldiameter 3 = ");
+    db4 = input("Grundcirkeldiameter 4 = ");
+    
+    da1 = input("Tandtopdiameter 1 = ");
+    da2 = input("tandtopdiameter 2 = ");
+    da3 = input("Tandtopdiameter 3 = ");
+    da4 = input("tandtopdiameter 4 = ");
+    
+
+    Ns = [N1 N2 N3 N4];
+    ds = [d1 d2 d3 d4];
 end
 
 i = 0;
-while i < 4
+while i < N_hjul
     i = i+1;
     
     % Udvekslingsforhold
@@ -70,6 +140,18 @@ while i < 4
 
     end
 
+    if isempty(i_tot) && ~isempty(i1) && ~isempty(i2)
+        disp("Total virkningsgrad")
+        i_tot = i1 * i2
+
+    elseif isempty(i1) && ~isempty(i2) && ~isempty(i_tot)
+        i1 = i_tot/i2
+
+    elseif isempty(i2) && ~isempty(i1) && ~isempty(i_tot)
+        i2 = i_tot/i1
+
+    end
+
 
     % Tangentialmodul
     if isempty(mt1) && ~isempty(mn1) && ~isempty(psi)
@@ -91,6 +173,27 @@ while i < 4
     elseif isempty(psi) && ~isempty(mt) && ~isempty(mn)
         disp("Skråvinkel")
         psi = acos(mn/mt)
+    end
+
+    % Tandhjulsbredde
+    
+    if isempty(F1) && ~isempty(F_f) && ~isempty(mn1)
+        disp("Pinion 1 bredde")
+        F1 = round(pi * F_f * mn1 + delta_F, 0)
+
+    elseif isempty(F2) && ~isempty(F_f) && ~isempty(mn1)
+        disp("Gear 1 bredde")
+        F2 = round(pi * F_f * mn1, 0)
+
+    elseif isempty(F3) && ~isempty(F_f) && ~isempty(mn2)
+        disp("Pinion 2 bredde")
+        F3 = round(pi * F_f * mn2 + delta_F, 0)
+
+    elseif isempty(F4) && ~isempty(F_f) && ~isempty(mn2)
+        disp("Gear 2 bredde")
+        F4 = round(pi * F_f * mn2, 0)
+        
+
     end
 
     % Tangentialindgrebsvinkel
@@ -149,7 +252,7 @@ while i < 4
     end
 
     % Centerakseafstand
-    if isempty(C)
+    if isempty(C) && ~isempty(d1) && ~isempty(d2)
         disp("Centerakseafstand")
         C = (d1 + d2)/2
 
@@ -271,29 +374,97 @@ while i < 4
         mn2 = (da4 - d4)/2
 
     end
-    
-    % Indgrebsgrad
 
-    if ~isempty(da1) && ~isempty(da2) && ~isempty(db1) && ~isempty(db2)  && ~isempty(d1) && ~isempty(d2)  && ~isempty(mt1)  && ~isempty(phi_t) && ~isempty(psi) && ~isempty(mn1) && ~isempty(F)
-        disp("mT = Totalindgrebsgrad 1")
-        mC = (0.5*(sqrt(da1^2 - db1^2) + sqrt(da2^2 - db2^2))-((d1+d2)/2)*sind(phi_t))/(pi*mt1*cosd(phi_t))
-        
-        mF = F*sind(psi)/(pi * mn1)
-        
-        mT = mC + mF
+    % Vinkelhastigheder
 
-    end
+    if isempty(omega1) && ~isempty(omega2) && ~isempty(i1)
+        disp("Vinkelhastighed for pinion 1")
+        omega1 = i1 * omega2
 
-    if ~isempty(da3) && ~isempty(da4) && ~isempty(db3) && ~isempty(db4)  && ~isempty(d3) && ~isempty(d4)  && ~isempty(mt2)  && ~isempty(phi_t) && ~isempty(psi) && ~isempty(mn2) && ~isempty(F)
-        disp("mT = Totalindgrebsgrad 2")
-        mC = (0.5*(sqrt(da3^2 - db3^2) + sqrt(da4^2 - db4^2))-((d3+d4)/2)*sind(phi_t))/(pi*mt2*cosd(phi_t))
-        
-        mF = F*sind(psi)/(pi * mn2)
-        
-        mT = mC + mF
+    elseif isempty(omega2) && ~isempty(omega1) && ~isempty(i1)
+        disp("Vinkelhastighed for gear 1")
+        omega2 = omega1/i1
 
-    end
+    elseif isempty(omega3) && ~isempty(omega4) && ~isempty(i2)
+        disp("Vinkelhastighed for pinion 2")
+        omega3 = omega4 * i2
 
-    
+    elseif isempty(omega4) && ~isempty(omega3) && ~isempty(i2)
+        disp("Vinkelhastighed for gear 2")
+        omega4 = omega3/i2
+
+    elseif isempty(i1) && ~isempty(omega1) && ~isempty(omega2)
+        i1 = omega1/omega2
+
+    elseif isempty(i2) && ~isempty(omega3) && ~isempty(omega4)
+        i2 = omega3/omega4
+
+    elseif isempty(i_tot) && ~isempty(omega1) && ~isempty(omega3)
+        i_tot = omega1/omega3
+
+    end  
+       
 end
+
+% Hastigheder
+if ~isempty(omega1) && ~isempty(omega2) && ~isempty(d1) && ~isempty(d2)
+    disp("Hastighed for pinion 1")
+    Vp = d1/2 * omega1
+
+    disp("Hastighed for gear 1")
+    Vg = d2/2 * omega2
+
+elseif ~isempty(omega3) && ~isempty(omega4) && ~isempty(d3) && ~isempty(d4)
+    disp("Hastighed for pinion 2")
+    Vp = d3/2 * omega3
+
+    disp("Hastighed for gear 2")
+    Vg = d4/2 * omega4
+end
+
+% Indgrebsgrad
+
+if ~isempty(da1) && ~isempty(da2) && ~isempty(db1) && ~isempty(db2)  && ~isempty(d1) && ~isempty(d2)  && ~isempty(mt1)  && ~isempty(phi_t) && ~isempty(psi) && ~isempty(mn1) && ~isempty(F2)
+    disp("mT = Totalindgrebsgrad 1")
+    mC = (0.5*(sqrt(da1^2 - db1^2) + sqrt(da2^2 - db2^2))-((d1+d2)/2)*sind(phi_t))/(pi*mt1*cosd(phi_t))
+
+    mF = F2*sind(psi)/(pi * mn1)
+
+    mT = mC + mF
+
+end
+
+if ~isempty(da3) && ~isempty(da4) && ~isempty(db3) && ~isempty(db4)  && ~isempty(d3) && ~isempty(d4)  && ~isempty(mt2)  && ~isempty(phi_t) && ~isempty(psi) && ~isempty(mn2) && ~isempty(F4)
+    disp("mT = Totalindgrebsgrad 2")
+    mC = (0.5*(sqrt(da3^2 - db3^2) + sqrt(da4^2 - db4^2))-((d3+d4)/2)*sind(phi_t))/(pi*mt2*cosd(phi_t))
+
+    mF = F4*sind(psi)/(pi * mn2)
+
+    mT = mC + mF
+
+end
+
+
+
+%----------------------%
+%        LASTER        %
+%----------------------%
+
+% Momenter for aksler
+if last == "ja"
+    if ~isempty(T_last) && ~isempty(eta_leje) && ~isempty(eta_tdr)
+        disp("Moment for aksel 1")
+        Tp = T_last/(i1 * eta_tdr * eta_leje^4)
+
+    end
+
+    % Tangentialkræfter
+    if ~isempty(Tp) && ~isempty(d1)
+        disp("Tangentialkræfter for pinion og gear - modsatrettede og lige store")
+        Wd1 = Tp/(d1/2)
+        Wd2 = Wd1
+    end
+
+end
+
 end
