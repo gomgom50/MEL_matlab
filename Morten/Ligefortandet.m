@@ -127,19 +127,19 @@ while i < 3
 
     % Udregninger af delecirkeldiameter
     if isempty(d1) && ~isempty(N1) && ~isempty(mn1)
-        disp("Delecirkeldiameter 1")
+        disp("Delecirkeldiameter pinion 1")
         d1 = N1 * mn1
 
     elseif isempty(d2) && ~isempty(N2) && ~isempty(mn1)
-        disp("Delecirkeldiameter 2")
+        disp("Delecirkeldiameter gear 1")
         d2 = N2 * mn1
 
     elseif isempty(d3) && ~isempty(N3) && ~isempty(mn2)
-        disp("Delecirkeldiameter 3")
+        disp("Delecirkeldiameter pinion 2")
         d3 = N3 * mn2
 
     elseif isempty(d4) && ~isempty(N4) && ~isempty(mn2)
-        disp("Delecirkeldiameter 4")
+        disp("Delecirkeldiameter gear 2")
         d4 = N4 * mn2
 
     end
@@ -257,35 +257,35 @@ while i < 3
     % Tandtopdiameter
 
     if isempty(da1) && ~isempty(d1) && ~isempty(mn1)
-        disp("Tandtopdiameter 1")
+        disp("Tandtopdiameter pinion 1")
         da1 = d1 + 2*mn1
 
     elseif isempty(da2) && ~isempty(d2) && ~isempty(mn1)
-        disp("Tandtopdiameter 2")
+        disp("Tandtopdiameter gear 1")
         da2 = d2 + 2*mn1
 
     elseif isempty(da3) && ~isempty(d3) && ~isempty(mn2)
-        disp("Tandtopdiameter 3")
+        disp("Tandtopdiameter pinion 2")
         da3 = d3 + 2*mn2
 
     elseif isempty(da4) && ~isempty(d4) && ~isempty(mn2)
-        disp("Tandtopdiameter 4")
+        disp("Tandtopdiameter gear 2")
         da4 = d4 + 2*mn2
 
     elseif isempty(d1) && ~isempty(da1) && ~isempty(mn1)
-        disp("Delecirkeldiameter 1")
+        disp("Delecirkeldiameter pinion 1")
         d1 = da1 - 2*mn1
 
     elseif isempty(d2) && ~isempty(da2) && ~isempty(mn1)
-        disp("Delecirkeldiameter 2")
+        disp("Delecirkeldiameter gear 1")
         d2 = da2 - 2*mn1
 
     elseif isempty(d3) && ~isempty(da3) && ~isempty(mn2)
-        disp("Delecirkeldiameter 3")
+        disp("Delecirkeldiameter pinion 2")
         d3 = da3 - 2*mn2
 
     elseif isempty(d4) && ~isempty(da4) && ~isempty(mn2)
-        disp("Delecirkeldiameter 4")
+        disp("Delecirkeldiameter gear 2")
         d4 = da4 - 2*mn2
     
     elseif isempty(mn1) && ~isempty(da1) && ~isempty(d1)
