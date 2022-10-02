@@ -58,6 +58,8 @@ if type == "skråfortandet" && last == "nej"
 end
 
 if type == "skråfortandet" && last == "ja"
+    T_last = input("Lastmoment i Nm = ")
+
     N_hjul = input("Antal tandhjul: ");
     N1 = input("N1 = ");
     N2 = input("N2 = ");
@@ -75,7 +77,7 @@ if type == "skråfortandet" && last == "ja"
     phi_t = input("Tangentialindgrebsvinkel i grader = ");
 
     F_f = input("Tandhjulsfaktor = ");
-    delta_F = input("Pinion størrelsesændring");
+    delta_F = input("Pinion størrelsesændring = ");
 
     F1 = input("Tandhjulsbredde 1 = ");
     F2 = input("Tandhjulsbredde 2 = ");
@@ -84,8 +86,6 @@ if type == "skråfortandet" && last == "ja"
 
     i1 = input("Udvekslingsforhold 1 = ");
     i2 = input("Udvekslingsforhold 2 = ");
-    i3 = input("Udvekslingsforhold 3 = ");
-    i4 = input("Udvekslingsforhold 4 = ");
     i_tot = input("Total udvekslingsforhold = ");
 
     omega1 = input("Omdrejningshastighed 1 i rad/s = ");
@@ -137,6 +137,12 @@ while i < N_hjul
 
     elseif isempty(N4) && ~isempty(N3) && ~isempty(i2)
         N4 = i2 * N3
+
+    elseif isempty(i_tot) && ~isempty(N1) && ~isempty(N2) && ~isempty(N3) && ~isempty(N4)
+        i_tot = N2*N4/(N1*N3)
+
+    elseif isempty(i_tot) && ~isempty(i1) && ~isempty(i2)
+        i_tot = i1*i2
 
     end
 
@@ -231,6 +237,21 @@ while i < N_hjul
         disp("Delecirkeldiameter 4")
         d4 = N4 * mt2
 
+    elseif isempty(d1) && ~isempty(d2) && ~isempty(i1)
+        disp("Delecirkeldiameter pinion 2")
+        d1 = d2/i1
+
+    elseif isempty(d2) && ~isempty(d1) && ~isempty(i1)
+        disp("Delecirkeldiameter gear 1")
+        d2 = d1*i1
+
+    elseif isempty(d3) && ~isempty(d4) && ~isempty(i2)
+        disp("Delecirkeldiameter pinion 2")
+        d3 = d4/i2
+
+    elseif isempty(d4) && ~isempty(d3) && ~isempty(i2)
+        disp("Delecirkeldiameter gear 2")
+        d4 = d3*i2
     end
 
     if isempty(N1) && ~isempty(d1) && ~isempty(mt1)
@@ -454,15 +475,22 @@ end
 if last == "ja"
     if ~isempty(T_last) && ~isempty(eta_leje) && ~isempty(eta_tdr)
         disp("Moment for aksel 1")
-        Tp = T_last/(i1 * eta_tdr * eta_leje^4)
+        Tp = T_last/(i_tot * eta_tdr^n_tdr * eta_leje^n_lejer)
 
     end
 
     % Tangentialkræfter
     if ~isempty(Tp) && ~isempty(d1)
-        disp("Tangentialkræfter for pinion og gear - modsatrettede og lige store")
+        disp("Tangentialkræfter for pinion 1 og gear 1 - modsatrettede og lige store")
         Wd1 = Tp/(d1/2)
         Wd2 = Wd1
+
+    end
+
+    if ~isempty(Tp) && ~isempty(d4)
+        disp("Tangentialkræfter for pinion 2 og gear 2 - modsatrettede og lige store")
+        Wd4 = T_last/(d4/2)
+        Wd3 = Wd4
     end
 
 end

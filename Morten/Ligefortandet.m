@@ -25,8 +25,6 @@ if type == "ligefortandet" && last == "nej"
     
     i1 = input("Udvekslingsforhold 1 = ");
     i2 = input("Udvekslingsforhold 2 = ");
-    i3 = input("Udvekslingsforhold 3 = ");
-    i4 = input("Udvekslingsforhold 4 = ");
     i_tot = input("Total udvekslingsforhold = ");
 
     omega1 = input("Omdrejningshastighed 1 i rad/s = ");
@@ -64,6 +62,8 @@ elseif type == "ligefortandet" && last == "ja"
     mn1 = input("Modul 1 = ");
     mn2 = input("Modul 2 = ");
 
+    phi = input("Indgrebsvinkel i grader = ");
+
     F_f = input("Tandhjulsfaktor = ");
     delta_F = input("Pinion størrelsesændring = ");
 
@@ -76,8 +76,7 @@ elseif type == "ligefortandet" && last == "ja"
 
     i1 = input("Udvekslingsforhold 1 = ");
     i2 = input("Udvekslingsforhold 2 = ");
-    i3 = input("Udvekslingsforhold 3 = ");
-    i4 = input("Udvekslingsforhold 4 = ");
+    i_tot = input("Total udvekslingsforhold = ");
 
     omega1 = input("Omdrejningshastighed 1 i rad/s = ");
     omega2 = input("Omdrejningshastighed 2 i rad/s = ");
@@ -114,8 +113,6 @@ elseif type == "ligefortandet" && last == "ja"
     da3 = input("Tandtopdiameter 3 = ");
     da4 = input("tandtopdiameter 4 = ");
 
-    phi = input("Indgrebsvinkel i grader = ");
-
     Ns = [N1 N2 N3 N4];
     ds = [d1 d2 d3 d4];
 
@@ -141,6 +138,22 @@ while i < 3
     elseif isempty(d4) && ~isempty(N4) && ~isempty(mn2)
         disp("Delecirkeldiameter gear 2")
         d4 = N4 * mn2
+    
+    elseif isempty(d1) && ~isempty(d2) && ~isempty(i1)
+        disp("Delecirkeldiameter pinion 2")
+        d1 = d2/i1
+
+    elseif isempty(d2) && ~isempty(d1) && ~isempty(i1)
+        disp("Delecirkeldiameter gear 1")
+        d2 = d1*i1
+
+    elseif isempty(d3) && ~isempty(d4) && ~isempty(i2)
+        disp("Delecirkeldiameter pinion 2")
+        d3 = d4/i2
+
+    elseif isempty(d4) && ~isempty(d3) && ~isempty(i2)
+        disp("Delecirkeldiameter gear 2")
+        d4 = d3*i2
 
     end
 
@@ -346,6 +359,13 @@ while i < 3
     elseif isempty(N4) && ~isempty(N3) && ~isempty(i2)
         N4 = i2 * N3
 
+    elseif isempty(i_tot) && ~isempty(N1) && ~isempty(N2) && ~isempty(N3) && ~isempty(N4)
+        i_tot = N2*N4/(N1*N3)
+
+    elseif isempty(i_tot) && ~isempty(i1) && ~isempty(i2)
+        i_tot = i1*i2
+
+
     end
 
     if isempty(i_tot) && ~isempty(i1) && ~isempty(i2)
@@ -370,9 +390,13 @@ while i < 3
         disp("Vinkelhastighed for gear 1")
         omega2 = omega1/i1
 
-    elseif isempty(omega3) && ~isempty(omega4) && ~isempty(i2)
+    elseif isempty(omega2) && ~isempty(omega3) && ~isempty(i2)
+        disp("Vinkelhastighed for gear 1")
+        omega2 = omega3 * i2
+
+    elseif isempty(omega3) && ~isempty(omega2) && ~isempty(i2)
         disp("Vinkelhastighed for pinion 2")
-        omega3 = omega4 * i2
+        omega3 = omega2/i2
 
     elseif isempty(omega4) && ~isempty(omega3) && ~isempty(i2)
         disp("Vinkelhastighed for gear 2")
@@ -381,8 +405,8 @@ while i < 3
     elseif isempty(i1) && ~isempty(omega1) && ~isempty(omega2)
         i1 = omega1/omega2
 
-    elseif isempty(i2) && ~isempty(omega3) && ~isempty(omega4)
-        i2 = omega3/omega4
+    elseif isempty(i2) && ~isempty(omega2) && ~isempty(omega3)
+        i2 = omega2/omega3
 
     elseif isempty(i_tot) && ~isempty(omega1) && ~isempty(omega3)
         i_tot = omega1/omega3
@@ -417,16 +441,24 @@ end
 if last == "ja"
     if ~isempty(T_last) && ~isempty(eta_leje) && ~isempty(eta_tdr)
         disp("Moment for aksel 1")
-        Tp = T_last/(i1 * eta_tdr * eta_leje^4)
+        Tp = T_last/(i_tot * eta_tdr^n_tdr * eta_leje^n_lejer)
 
     end
 
     % Tangentialkræfter
     if ~isempty(Tp) && ~isempty(d1)
-        disp("Tangentialkræfter for pinion og gear - modsatrettede og lige store")
+        disp("Tangentialkræfter for pinion 1 og gear 1 - modsatrettede og lige store")
         Wd1 = Tp/(d1/2)
         Wd2 = Wd1
+
     end
+
+    if ~isempty(Tp) && ~isempty(d4)
+        disp("Tangentialkræfter for pinion 2 og gear 2 - modsatrettede og lige store")
+        Wd4 = T_last/(d4/2)
+        Wd3 = Wd4
+    end
+
 end
     
 % Bøjningsspændinger i tandfoden
