@@ -33,6 +33,37 @@ classdef Tandhjul_Skrotandet_dimensionering
             end         
         end
 
+        function svar = Udregning_mt_via_mn_psi_deg (mt, mn, psi_n_deg)
+            % Udregning_mt_via_mn_psi_deg: Udregner tangential modul, via modul og psi i grader
+            % indtats manglende variable med []
+            % mt == mn/(cosd(psi_n_deg))
+            % Input:
+            % psi = skraavinkel
+            % mt = tangentialmodul
+            % mn = modul
+            % Output:
+            % Svaret kommer an på manglende inputs. 
+            if isempty(mt)
+                syms mt
+                disp("Udregner mt via mn og psi_n_deg") 
+                eq = mt == mn/(cosd(psi_n_deg)); 
+                displayFormula("mt == mn/(cosd(psi_n_deg))")
+                svar = solve(eq, mt); 
+            elseif isempty(mn)
+                syms mn
+                disp("Udregner mn via mt og psi_n_deg") 
+                eq = mt == mn/(cosd(psi_n_deg)); 
+                displayFormula("mt == mn/(cosd(psi_n_deg))")
+                svar = solve(eq, mn); 
+            elseif isempty(psi_n_deg)
+                syms psi_n_deg
+                disp("Udregner psi_n_deg via mt og mn") 
+                eq = mt == mn/(cosd(psi_n_deg)); 
+                displayFormula("mt == mn/(cosd(psi_n_deg))")
+                svar = solve(eq, psi_n_deg);                 
+            end
+        end
+
         function svar = Udregning_psi_via_mn_mt (psi_deg, mn, mt)
             % Udregning_psi_via_mn_mt: psi_deg, mn og mt ud fra manglende
             % indtats manglende variable med []
