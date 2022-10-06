@@ -413,7 +413,11 @@ while i < 3
 
     end
 
+    if ~isempty(da1) && ~isempty(da2) && ~isempty(db1) && ~isempty(db2)  && ~isempty(d1) && ~isempty(d2)  && ~isempty(mn1)  && ~isempty(phi)  && ~isempty(mn1)
+    disp("mT = Totalindgrebsgrad 1")
+    mC = (0.5*(sqrt(da1^2 - db1^2) + sqrt(da2^2 - db2^2))-((d1+d2)/2)*sind(phi))/(pi*mn1*cosd(phi))
     
+    end
 
 end
 
