@@ -119,7 +119,7 @@ elseif type == "ligefortandet" && last == "ja"
 end
 
 i = 0;
-while i < 3
+while i < 4
     i = i+1;
 
     % Udregninger af delecirkeldiameter
