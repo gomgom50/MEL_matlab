@@ -5,7 +5,7 @@ PersRel = xlsread('Data, pladser og personer.xlsx', ...
  '11 pladser-personer','B29:L39');
 
 
-OptPlacmaxMV(KommPot,PersRel)
+OptPlacmaxMV(PersRel,KommPot)
 
 function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
     mut = perms(1:size(Tr, 1));
@@ -17,13 +17,7 @@ function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
     end
     OptMV = max(arr)
     k = find(arr==max(arr))
-%     for i = 1:length(k)
-%         k(i)
-%         mut(k(i),:)
-%         arr2(end+1) = mut(k(i),:);
-%     end
     OptPl = mut(k,:)
-    
 end
 
 function MV = MaalFkt(Pl,Tr,Dst)
