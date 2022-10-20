@@ -2,7 +2,7 @@ function MV = MaalFkt(Pl,Tr,Dst)
 % MaalFkt - Bestemmer den totale ton afstand fra råvarelager til færdigvareLager
 % Kald: MV = MaalFkt(Pl,Tr,Dst)
 % Input:
-% Pl = 
+% Pl = Placeringen af lokationer
 % Tr = 
 % Dst = 
 % Output:
