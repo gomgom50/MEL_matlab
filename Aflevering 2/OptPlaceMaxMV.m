@@ -3,7 +3,7 @@ function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
     arr = [];
     arr2 = [];
     for i = 1:size(mut, 1)
-        mut(i,:);
+%         mut(i,:);
         arr(end+1) = MaalFkt(mut(i,:),Tr,Dst);
     end
     OptMV = max(arr)
