@@ -7,7 +7,7 @@ function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
         arr(end+1) = MaalFkt(mut(i,:),Tr,Dst);
     end
     OptMV = max(arr)
-    k = find(arr==max(arr))
+    k = find(arr==max(arr));
     OptPl = mut(k,:)
 end
 
