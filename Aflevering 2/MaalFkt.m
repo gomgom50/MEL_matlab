@@ -27,6 +27,6 @@ function MV = MaalFkt(Pl,Tr,Dst)
             % ikke ændres
         end
     end
-    %Ved slut er alle tal i den øvre trekant af matrixen gennem gået
+    % Ved slut er alle tal i den øvre trekant af matrixen gennemgået
     MV = sum; % summen af værdierne udskrives
 end
