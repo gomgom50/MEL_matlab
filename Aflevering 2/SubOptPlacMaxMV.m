@@ -1,17 +1,23 @@
 function [SubOptPl,SubOptMV] = SubOptPlacMaxMV(Tr,Dst,Pl0)
-% MaalFkt - Bestemmer den totale score af af funktionen ved at
-% gange de to vekterorer sammen en indgang af gangen 
-% for alle rækker i og kolonner j
-% Kald: MV = MaalFkt(Pl,Tr,Dst)
+% SubOptPlacMaxMV - Returnerer den rute der afgiver den højeste numeriske
+% værdi baseret på Maalfunktionen (MaalFkt) ved suboptimal placering.
+% Kald: SubOptPlacMaxMV(Tr,Dst,Pl0)
 % Input:
-% Pl = Placeringen af lokationer
-% Tr = 
-% Dst = 
+% Pl = Placeringen af lokationer.
+% Tr = Numeriske værdier tilskrevet placering.
+% Dst = Afstanden mellem placeringer.
 % Output:
-% MV = antal i Ton Km
+% SubOptPlacMaxMV(Tr,Dst,Pl0) - Numerisk værdi & array "rute".
+    
+    % Stedholdere for den tidligere bedste numeriske værdi og den mulige 
+    % opkommende bedste numeriske værdi.
     max = MaalFkt(Pl0, Tr, Dst);
     oldMax = MaalFkt(Pl0, Tr, Dst);
+
+    % Variable & Stedholder for bedste rute.
     bedsteMatrix = Pl0;
+
+    % 
     while 1
         for j = 1:length(Tr)
             for i = 1:length(Tr)
