@@ -1,4 +1,14 @@
 function [SubOptPl,SubOptMV] = SubOptPlacMaxMV(Tr,Dst,Pl0)
+% MaalFkt - Bestemmer den totale score af af funktionen ved at
+% gange de to vekterorer sammen en indgang af gangen 
+% for alle rækker i og kolonner j
+% Kald: MV = MaalFkt(Pl,Tr,Dst)
+% Input:
+% Pl = Placeringen af lokationer
+% Tr = 
+% Dst = 
+% Output:
+% MV = antal i Ton Km
     max = MaalFkt(Pl0, Tr, Dst);
     oldMax = MaalFkt(Pl0, Tr, Dst);
     bedsteMatrix = Pl0;
