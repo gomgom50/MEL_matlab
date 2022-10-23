@@ -1,12 +1,12 @@
 function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
-% OptPlaceMaxMV - Angiver en matrice, der kan finde den optimale placering
-% på baggrund af en given vektor samt målfunktionsværdi.
-% Kald: MV = MaalFkt(Pl,Tr,Dst)
+% OptPlaceMaxMV - Returnerer den optimale rute samt tilsvarende numerisk 
+% værdi anskrevet denne rute på baggrund af input dataene.
+% Kald: Opt = OptPlaceMinMV(Tr,Dst);
 % Input:
-% Tr = 
-% Dst = 
+% Tr = Numeriske værdier tilskrevet placering
+% Dst = Afstanden mellem placeringer
 % Output:
-% MV = antal i Ton Km
+% Opt = 
     mut = perms(1:size(Tr, 1));
     arr = [];
     arr2 = [];
