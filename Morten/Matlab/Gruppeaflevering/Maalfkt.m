@@ -1,7 +1,7 @@
 function MV = Maalfkt(pl, tr, dst)
 k = length(pl);
 
-x = zeros(1, k);
+x = zeros(1, 1);
 ctr = 1;
 
 for i = 1:length(pl)-1
@@ -18,5 +18,5 @@ for i = 1:length(pl)-1
 
 end
 
-MV = sum(x)
+MV = sum(x);
 end
