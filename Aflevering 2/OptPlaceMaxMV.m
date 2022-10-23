@@ -1,10 +1,8 @@
 function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
-% MaalFkt - Bestemmer den totale score af af funktionen ved at
-% gange de to vekterorer sammen en indgang af gangen 
-% for alle rækker i og kolonner j
+% OptPlaceMaxMV - Angiver en matrice, der kan finde den optimale placering
+% på baggrund af en given vektor samt målfunktionsværdi.
 % Kald: MV = MaalFkt(Pl,Tr,Dst)
 % Input:
-% Pl = Placeringen af lokationer
 % Tr = 
 % Dst = 
 % Output:
