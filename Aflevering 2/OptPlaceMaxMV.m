@@ -6,15 +6,26 @@ function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
 % Tr = Numeriske værdier tilskrevet placering
 % Dst = Afstanden mellem placeringer
 % Output:
-% Opt = 
+% Opt = Ruten der returnerer den største numeriske værdi.
+
+    % Mut returnerer en ændring af routen baseret på størrelsen af matrice
+    % inputtet fra Tr.
     mut = perms(1:size(Tr, 1));
+
+    % Et tomt array oprettes som kan lagere værdier fra for-loop.
     arr = [];
-    arr2 = [];
+
+    % Der tilføjes en tom plads, hvori dataen danner row & colum fra den 
+    % tidligere oprettede Maalfunktion. end+1 gives som indeks til arrayet
+    % da det ikke ønskes muligt at overskrive tidligere indeks.
     for i = 1:size(mut, 1)
-%         mut(i,:);
         arr(end+1) = MaalFkt(mut(i,:),Tr,Dst);
     end
+
+    % OptMV returnerer den største numeriske værdi fundet i arr.
     OptMV = max(arr)
+
+    % k & OptPl finder den tilhørende rute til den største numeriske værdi.
     k = find(arr==max(arr));
     OptPl = mut(k,:)
 end
