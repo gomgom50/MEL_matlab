@@ -1,23 +1,26 @@
-function [PL, MV] = MSubOptPlacMaxMV(tr, dst, M)
+function [MSubPL, MSubMV] = MSubOptPlacMaxMV(tr, dst, M)
 
-
-PL = [];
-MV = [];
+PLs = [];
+MVs = [];
 
 for i = 1:M
 
     P10 = randperm(length(tr));
 
-    [SubMV, SubOptPl] = SubOptPlacMaxMV(P10, tr, dst);
+    [SubOptMV, SubOptPl] = SubOptPlacMaxMV(P10, tr, dst);
     
-    MV(end+1) = SubMV;
-    PL(end+1, :) = SubOptPl;
+    PLs(end+1, :) = SubOptPl;
+    MVs(end+1) = SubOptMV;
+    
+    
 
 end
 
+[M, I] = max(MVs);
 
+index = I
+MSubMV = M;
+MSubPL = PLs(I, :);
 
-PL = PL;
-MV = MV;
 
 end
