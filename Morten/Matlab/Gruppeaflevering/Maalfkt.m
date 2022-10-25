@@ -3,8 +3,8 @@ k = length(pl);
 
 x = 0;
 
-for i = 1:length(pl)-1
-    for j = i+1:length(pl)
+for i = 1:k-1
+    for j = i+1:k
 
 
         x = x + dst(i, j) * tr(pl(i), pl(j));
