@@ -1,5 +1,5 @@
 function MV = MaalFkt(Pl,Tr,Dst)
-% MaalFkt - Bestemmer den totale score af af funktionen ved at
+% MaalFkt - Bestemmer den totale score af funktionen ved at
 % gange de to matricer sammen en indgang af gangen 
 % for alle rækker i og kolonner j
 % Kald: MV = MaalFkt(Pl,Tr,Dst)
@@ -19,7 +19,7 @@ function MV = MaalFkt(Pl,Tr,Dst)
 
         for j = i:length(Tr) %forloop der køre fra i til længden af Tr
 
-            % i reduceres med 1 for hver gang dette forloop er gennemført
+            % Første tal i j fjernes for hver gang dette forloop er kørt
             % Hver indgang ganges nu sammen i de to matricer Dst og Tr
             sum = Dst(i,j) .* Tr(Pl(i), Pl(j)) + sum;
             % Det ses at der bruges indgangen for placeringen(Pl) for Tr
