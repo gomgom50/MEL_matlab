@@ -3,7 +3,7 @@ function [root,ea,iter]=newtraph(func,xr,es,maxit)
 %   [root,ea,iter]=newtraph(func,xr,es,maxit): 
 %   uses Newton-Raphson method to find the root of func 
 % input: 
-%   func = name of function symbolic
+%   func = name of function (symbolic)
 %   xr = initial guess 
 %   es = desired relative error (default = 0.0001%) 
 %   maxit = maximum allowable iterations (default = 50) 
