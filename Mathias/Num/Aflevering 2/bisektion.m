@@ -23,4 +23,4 @@ while 1
 end
 T1500 = Tr % Temperaturen printes
 ea % Usikkerheden printes
-it % Antal interationer der er gennemgået
+it % Antal interationer der er gennemgået 

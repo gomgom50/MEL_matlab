@@ -1,10 +1,9 @@
-function [root,ea,iter]=newtraph(func,dfunc,xr,es,maxit) 
+function [root,ea,iter]=newtraph(func,xr,es,maxit) 
 % newtraph: Newton-Raphson root location zeroes 
-%   [root,ea,iter]=newtraph(func,dfunc,xr,es,maxit): 
+%   [root,ea,iter]=newtraph(func,xr,es,maxit): 
 %   uses Newton-Raphson method to find the root of func 
 % input: 
-%   func = name of function 
-%   dfunc = name of derivative of function 
+%   func = name of function (symbolic)
 %   xr = initial guess 
 %   es = desired relative error (default = 0.0001%) 
 %   maxit = maximum allowable iterations (default = 50) 
@@ -13,36 +12,43 @@ function [root,ea,iter]=newtraph(func,dfunc,xr,es,maxit)
 %   ea = approximate relative error (%) 
 %   iter = number of iterations 
 
-if nargin<3 %Hvis der er mindre end 3 input gives der en advarsel
-    error('at least 3 input arguments required')
+if nargin<2 %Hvis der er mindre end 2 input gives der en advarsel
+    error('at least 2 input arguments required')
 end 
 
-if nargin<4||isempty(es) %sætter default value hvis ikke intastes
+if nargin<3||isempty(es) %sætter default value hvis ikke intastes
     es=0.0001; 
 end 
 
-if nargin<5||isempty(maxit) %sætter default value hvis ikke intastes
+if nargin<4||isempty(maxit) %sætter default value hvis ikke intastes
     maxit=50; 
 end 
 
 iter = 0; %antal iteration starter på 0
 %laver tomme arrays til tabel udskrift
 Resultat = [];
-Ligning = [];
+f_list = [];
+df_list = [];
 Error = [];
+
+%differentier funktionen symbolsk og laver den numerisk igen
+f = matlabFunction(func);
+df = matlabFunction(diff(func)); 
 
 while 1  %starter while loop
   xrold = xr; %gemmer den gamle xr værdi
-  xr = xr - func(xr)/dfunc(xr); %udregner roden.
+  xr = xr - f(xr)/df(xr); %udregner roden.
 
-  syms T %sætter T som et symbol til visning af ligningen
-  f_show = xr - func(T)/dfunc(T); %ligningen der bruges
+%   syms T %sætter T som et symbol til visning af ligningen
+%   f_show = xr - f(T)/df(T) %ligningen der bruges
   iter = iter + 1; % antal gange der er kørt igennem
   
   Resultat(end+1) = xr; %tilføjer roden til resultat listen
-  Ligning(end+1) = iter; %tilføjer ligningen til lignings listen
-  
-  if xr ~= 0 %Hvis xr ikke er 0 sættes en ny error
+  f_list(end+1) = f(xrold); %tilføjer ligningen til lignings listen
+  df_list(end+1) = df(xrold);
+
+  if xr ~= 0 %Hvis xr ikke er 0 sættes en ny error således undgår vi at 
+      % dividere med 0
       ea = abs((xr - xrold)/xr) * 100; 
   end 
   Error(end+1) = ea;  %tilføjer error til resultat error listen
@@ -59,6 +65,7 @@ ea
 iter
 
 %Der laves en tabel med alle værdierne der er opnået
-tabel = table(Resultat', Ligning', Error',...
-    VariableNames={'Resultat(xr)','Ligning', 'Error(ea)'})
+tabel = table(Resultat', f_list', df_list', Error',...
+    VariableNames={'Rod(xr)','f(xr)', 'df/dT (xr)', ...
+    'Error(ea)'})
 end
