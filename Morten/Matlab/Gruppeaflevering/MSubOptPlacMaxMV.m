@@ -16,7 +16,7 @@ for i = 1:M
 
 end
 
-[M, I] = max(MVs)
+[M, I] = max(MVs);
 
 index = I;
 MSubMV = M;
