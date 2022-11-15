@@ -16,11 +16,11 @@ for i = 1:M
 
 end
 
-[M, I] = max(MVs);
+[M, I] = max(MVs)
 
-index = I
+index = I;
 MSubMV = M;
-MSubPL = PLs(I, :);
+MSubPL = PLs(index, :);
 
 
 end

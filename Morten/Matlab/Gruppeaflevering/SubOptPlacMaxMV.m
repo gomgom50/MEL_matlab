@@ -3,6 +3,7 @@ max = Maalfkt(P10, tr, dst);
 
 matrix = P10;
 
+
 for i = 1:length(P10)
     for j = 1:length(P10)
     
