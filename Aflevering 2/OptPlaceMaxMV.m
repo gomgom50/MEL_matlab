@@ -1,4 +1,4 @@
-function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
+function [OptPl,OptMV] = OptPlacMaxMV(Tr,Dst)
 % OptPlaceMaxMV - Returnerer den optimale rute samt tilsvarende numerisk 
 % værdi anskrevet denne rute på baggrund af input dataene.
 % Kald: Opt = OptPlaceMinMV(Tr,Dst);
@@ -23,10 +23,10 @@ function [OptPl,OptMV] = OptPlacmaxMV(Tr,Dst)
     end
 
     % OptMV returnerer den største numeriske værdi fundet i arr.
-    OptMV = max(arr)
+    OptMV = max(arr);
 
     % k & OptPl finder den tilhørende rute til den største numeriske værdi.
     k = find(arr==max(arr));
-    OptPl = mut(k,:)
+    OptPl = mut(k,:);
 end
 
