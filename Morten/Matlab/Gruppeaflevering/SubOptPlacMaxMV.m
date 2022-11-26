@@ -16,11 +16,11 @@ for i = 1:length(P10)
         matnew(i) = pos2;
         matnew(j) = pos1;
 
-        MV = Maalfkt(matnew, tr, dst);
+        MV = Maalfkt(matnew, tr, dst)
 
         if MV > max
-            max = MV;
-            matrix = matnew;
+            max = MV
+            matrix = matnew
         end
 
     end
