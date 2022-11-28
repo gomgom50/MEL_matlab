@@ -23,9 +23,9 @@ function [OptPl,OptMV] = OptPlacMinMV(Tr,Dst)
     end
 
     % OptMV returnerer den mindste numeriske værdi fundet i arr.
-    OptMV = min(arr)
+    OptMV = min(arr);
 
     % k & OptPl finder den tilhørende rute til den største numeriske værdi.
     k = find(arr==min(arr));
-    OptPl = mut(k,:)
+    OptPl = mut(k,:);
 end

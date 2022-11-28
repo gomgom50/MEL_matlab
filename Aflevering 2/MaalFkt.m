@@ -15,10 +15,9 @@ function MV = MaalFkt(Pl,Tr,Dst)
     sum = 0; % bruges i forloop til at sumere continuert
 
     %næstede forloop starter
-    for i = 1:length(Pl) %forloop der køre fra 1 til længden af Pl
+    for i = 1:length(Pl)-1 %forloop der køre fra 1 til længden af Pl
 
-        for j = i:length(Tr) %forloop der køre fra i til længden af Tr
-
+        for j = i+1:length(Tr) %forloop der køre fra i til længden af Tr
             % Første tal i j fjernes for hver gang dette forloop er kørt
             % Hver indgang ganges nu sammen i de to matricer Dst og Tr
             sum = Dst(i,j) .* Tr(Pl(i), Pl(j)) + sum;
