@@ -7,12 +7,13 @@ while 1
   for i = 1:n-1
     for j = i+1:n
       mtest = m;
-      mtest(i) = m(i);
-      mtest(j) = m(j);
-      dtest = massemidtdist(m,r); % Kald funktion fra delopg. (a)
-      if dtest > d
-        mtest = m;
-        dtest = d;
+      mtest(i) = m(j); %i rettes til j
+      mtest(j) = m(i); %j rettes til i
+      dtest = massemidtdist(mtest,r); % Kald funktion fra delopg. (a) 
+      % m rettes til mtest
+      if dtest < d
+        m = mtest;
+        d = dtest;
       end
     end
   end
