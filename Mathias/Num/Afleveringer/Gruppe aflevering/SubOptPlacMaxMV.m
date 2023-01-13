@@ -24,17 +24,17 @@ while max > oldMax %Der laves et while loop som sørger for at kontroller
     % Hvis dette ikke er muligt stoppes loopet.
     oldMax = MaalFkt(bedsteMatrix, Tr, Dst);
     % Nestede forloop starter
-    for j = 1:length(Tr)
-        for i = 1:length(Tr)
+    for i = 1:length(Tr)-1
+        for j = i+1:length(Tr)
             mutMatrix = bedsteMatrix;
             % Et eksempel på en meget simpelt mutMatrix [1, 2] i først
             % for loop sker der ikke noget da i og j = 1. I næste for
             % loop så vil position i og j blive flippede. muMatrix
             % vil således blive: [2, 1]
-            pos1 = bedsteMatrix(j);
-            pos2 = bedsteMatrix(i);
-            mutMatrix(i) = pos1;
-            mutMatrix(j) = pos2;
+%             pos1 = bedsteMatrix(j);
+%             pos2 = bedsteMatrix(i);
+            mutMatrix(i) = bedsteMatrix(j);%pos1;
+            mutMatrix(j) = bedsteMatrix(i);%pos2;
     
             %Hvis MaalFkt giver en større max værdi end den tidligere
             %satte max så vil denne nye MaalFkt blive sat til max og
