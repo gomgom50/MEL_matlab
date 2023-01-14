@@ -5,6 +5,7 @@ function [x,f,ea,iter] = newtmult(func,x0,es,maxit)
 %     a system of nonlinear equations
 % input:
 %   func = name of function that returns f and J
+%   Indsættes som fx @jacobifunk
 %   x0 = initial guess
 %   es = desired percent relative error (default = 0.0001%)
 %   maxit = maximum allowable iterations (default = 50)
