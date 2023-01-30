@@ -11,6 +11,7 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
+		<Item Name="EnhedsOmregner.vi" Type="VI" URL="../VIs/EnhedsOmregner.vi"/>
 		<Item Name="LængdeMåler.vi" Type="VI" URL="../VIs/LængdeMåler.vi"/>
 		<Item Name="Yattzee.vi" Type="VI" URL="../VIs/Yattzee.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
