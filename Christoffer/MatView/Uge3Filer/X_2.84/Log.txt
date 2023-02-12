@@ -1,0 +1,13 @@
+07/02/2023 18:33:19 usr1 Logged out
+07/02/2023 18:33:18 usr1 multiplicerede de to sidst trukne tal til resultatet: 0.855235
+07/02/2023 18:33:17 usr1 trak et lille tilfældigt tal: 0.319351
+07/02/2023 18:33:17 usr1 trak et stort tilfældigt tal: 2.678044
+07/02/2023 18:33:17 usr1 trak et lille tilfældigt tal: 0.059050
+07/02/2023 18:33:15 usr1 multiplicerede de to sidst trukne tal til resultatet: 161.129697
+07/02/2023 18:33:15 usr1 multiplicerede de to sidst trukne tal til resultatet: 39.007394
+07/02/2023 18:33:15 usr1 multiplicerede de to sidst trukne tal til resultatet: 4.130748
+07/02/2023 18:33:14 usr1 trak et stort tilfældigt tal: 9.443180
+07/02/2023 18:33:14 usr1 trak et stort tilfældigt tal: 0.437432
+07/02/2023 18:33:14 usr1 trak et lille tilfældigt tal: 0.161135
+07/02/2023 18:33:13 usr1 trak et lille tilfældigt tal: 0.506481
+07/02/2023 18:33:13 usr1 Logged ind succsesfuldt
