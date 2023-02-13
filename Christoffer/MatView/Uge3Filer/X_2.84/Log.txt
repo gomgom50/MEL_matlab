@@ -1,13 +1,42 @@
-07/02/2023 18:33:19 usr1 Logged out
-07/02/2023 18:33:18 usr1 multiplicerede de to sidst trukne tal til resultatet: 0.855235
-07/02/2023 18:33:17 usr1 trak et lille tilfældigt tal: 0.319351
-07/02/2023 18:33:17 usr1 trak et stort tilfældigt tal: 2.678044
-07/02/2023 18:33:17 usr1 trak et lille tilfældigt tal: 0.059050
-07/02/2023 18:33:15 usr1 multiplicerede de to sidst trukne tal til resultatet: 161.129697
-07/02/2023 18:33:15 usr1 multiplicerede de to sidst trukne tal til resultatet: 39.007394
-07/02/2023 18:33:15 usr1 multiplicerede de to sidst trukne tal til resultatet: 4.130748
-07/02/2023 18:33:14 usr1 trak et stort tilfældigt tal: 9.443180
-07/02/2023 18:33:14 usr1 trak et stort tilfældigt tal: 0.437432
-07/02/2023 18:33:14 usr1 trak et lille tilfældigt tal: 0.161135
-07/02/2023 18:33:13 usr1 trak et lille tilfældigt tal: 0.506481
-07/02/2023 18:33:13 usr1 Logged ind succsesfuldt
+13/02/2023 10:27:08 
+13/02/2023 10:27:05 usr1 Logged out
+13/02/2023 10:27:04 usr1 trak et lille tilfældigt tal: 0.153625
+13/02/2023 10:27:04 usr1 trak et stort tilfældigt tal: 1.609256
+13/02/2023 10:27:03 usr1 trak et stort tilfældigt tal: 8.833633
+13/02/2023 10:27:03 usr1 trak et stort tilfældigt tal: 0.146600
+13/02/2023 10:27:02 usr1 trak et lille tilfældigt tal: 0.252328
+13/02/2023 10:27:02 usr1 trak et stort tilfældigt tal: 2.956710
+13/02/2023 10:27:01 usr1 trak et lille tilfældigt tal: 0.408970
+13/02/2023 10:26:56 usr1 multiplicerede de to sidst trukne tal til resultatet: 1.098369
+13/02/2023 10:26:56 usr1 trak et stort tilfældigt tal: 1.305362
+13/02/2023 10:26:55 usr1 trak et lille tilfældigt tal: 0.841429
+13/02/2023 10:26:53 usr1 Logged ind succsesfuldt
+13/02/2023 10:26:48 Brugernavn ikke fundet
+13/02/2023 10:26:48 Brugernavn ikke fundet
+13/02/2023 10:26:41 usr1 skrev forket Password
+13/02/2023 10:26:41 usr1 skrev forket Password
+13/02/2023 10:26:41 usr1 skrev forket Password
+13/02/2023 10:26:40 usr1 skrev forket Password
+13/02/2023 10:26:40 usr1 skrev forket Password
+13/02/2023 10:26:40 usr1 skrev forket Password
+13/02/2023 10:26:40 usr1 skrev forket Password
+13/02/2023 10:26:40 usr1 skrev forket Password
+13/02/2023 10:26:40 usr1 skrev forket Password
+13/02/2023 10:26:39 usr1 skrev forket Password
+13/02/2023 10:26:39 usr1 skrev forket Password
+13/02/2023 10:26:39 usr1 skrev forket Password
+13/02/2023 10:26:39 usr1 skrev forket Password
+13/02/2023 10:26:39 usr1 skrev forket Password
+13/02/2023 10:26:39 usr1 skrev forket Password
+13/02/2023 10:26:38 usr1 skrev forket Password
+13/02/2023 10:26:38 usr1 skrev forket Password
+13/02/2023 10:26:38 usr1 skrev forket Password
+13/02/2023 10:26:38 usr1 skrev forket Password
+13/02/2023 10:26:38 usr1 skrev forket Password
+13/02/2023 10:26:37 usr1 skrev forket Password
+13/02/2023 10:26:36 usr1 skrev forket Password
+13/02/2023 10:26:33 Brugernavn ikke fundet
+13/02/2023 10:26:31 Brugernavn ikke fundet
+13/02/2023 10:26:31 Brugernavn ikke fundet
+13/02/2023 10:26:31 Brugernavn ikke fundet
+13/02/2023 10:26:29 Brugernavn ikke fundet
