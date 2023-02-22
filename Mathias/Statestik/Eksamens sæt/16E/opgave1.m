@@ -1,4 +1,4 @@
-%% E2016 Opg 1: Dronens landingspræcision
+% %% E2016 Opg 1: Dronens landingspræcision
 clear all; close all; clc;
 
 mu = 0.45
