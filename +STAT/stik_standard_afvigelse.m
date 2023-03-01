@@ -1,5 +1,7 @@
 function [s, ss] = stik_standard_afvigelse(data)
-% Udregner stik varians (s) med data som input 
+% Udregner stik varians (ss) og stik standard afvigelse (s)
+% med data som input.
+%
 % Kald: [s, ss] = stik_standard_afvigelse(data)
 % Input:
 %   data = dataen
