@@ -1,4 +1,4 @@
-function [s] = stik_varians(data)
+function [s] = stik_standard_afvigelse(data)
 %Udregner stik varians (s) med data som input
 data_op = data.^2;
 n = length(data);
