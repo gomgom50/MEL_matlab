@@ -5,11 +5,22 @@ function Output = KonfidensIntervalNormal(data, procentKI, std)
 
 
 
+
 if  ~isempty(std)
-    disp("Da populations-standardafvigelsen er kendt, bruges følgende formel til " + ...
-        "at udregne konfidensintervallet")
+    disp("Da populations-standardafvigelsen er kendt, bruges følgende") 
+    disp("formel til at udregne konfidensintervallet")
+
     displayFormula("y_bar + z_alpha/2 * sigma/sqrt(n)")
     displayFormula("y_bar - z_alpha/2 * sigma/sqrt(n)")
+    
+    disp("Hvor")
+    displayFormula("y_bar = Sigma*(y_i)/n")
+
+    disp("og")
+    
+    displayFormula("z_alpha/2 = norminv*(alpha/2)")
+
+
     x = data';
 
     alpha_ki = (1 - procentKI/100)/2;
@@ -26,14 +37,30 @@ if  ~isempty(std)
     ki_mu = [upper_t; lower_t];
 
     pd_ki = makedist("Normal","mu",y_bar,"sigma",std);
+    
+    disk = ["mu", "sigma"]';
+    
+    disk_vals = [y_bar, std]';
 
 elseif isempty(std)
     % Hvis populations-standardafvigelsen ikke kendes, skal Students-t
     % fordeling benyttes
-    disp("Da populations-standardafvigelsen er ukendt, bruges følgende formel til " + ...
-        "at udregne konfidensintervallet")
+    fprintf("Da populations-standardafvigelsen er ukendt, bruges følgende") 
+    disp("formel til at udregne konfidensintervallet")
     displayFormula("y_bar + t_df_alpha/2 * s/sqrt(n)")
     displayFormula("y_bar - t_df_alpha/2 * s/sqrt(n)")
+
+    disp("Hvor s er stikprøvestandardafvigelsen, med formlen")
+    displayFormula("s = sqrt(n*Sigma(y_i^2) * Sigma(y_i)^2/(n*(n-1)))")
+
+    disp("Og y_bar er stikprøvemiddelværdien")
+    displayFormula("y_bar = Sigma*(y_i)/n")
+
+    disp("og")
+    displayFormula("t_df_alpha/2 = -tinv*(alpha/2)")
+
+
+
 
     x = data;
 
@@ -55,6 +82,10 @@ elseif isempty(std)
 
     pd_ki = makedist("Normal","mu",y_bar,"sigma",s);
 
+    disk = ["mu", "s"]';
+
+    disk_vals = [y_bar, s]';
+
 end
 
 
@@ -70,8 +101,8 @@ pd = pdf(pd_ki, xs);
 plot(xs, pd, "DisplayName","Fordelingsplot"), grid()
 hold on
 
-area(xs(1:length(lower)), pd(1:length(lower)), "DisplayName","mindre end "+ki_mu(1))
-area(xs(upper(1):end), pd(upper(1):end), "DisplayName","større end "+ki_mu(2))
+area(xs(1:length(lower)), pd(1:length(lower)), "DisplayName","Nedre KI "+ki_mu(1))
+area(xs(upper(1):end), pd(upper(1):end), "DisplayName","Øvre KI "+ki_mu(2))
 
 alpha(0.5)
 title(procentKI + "% konfidensinterval")
@@ -82,7 +113,8 @@ hold off
 
 int_names = ["Nedre"; "Øvre"];
 
-disp(table(int_names, round(ki_mu, 6), 'VariableNames',["Interval","Værdier"]))
+
+disp(table(int_names, round(ki_mu, 2), disk, disk_vals, 'VariableNames',["Interval","Værdier","Deskriptorer","Værdi"]))
 
 
 end
