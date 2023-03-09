@@ -10,9 +10,9 @@ ds = jacobian(func);
 ds_vals = subs(ds, symvars, var_list);
 
 for k = 1:n
-    tot_u(k) = sqrt((ds_vals(k)*errors(k))^2);
+    tot_u(k) = ds_vals(k)^2*errors(k)^2;
 end
 
-U = sum(tot_u);
+U = sqrt(sum(tot_u));
 
 end
