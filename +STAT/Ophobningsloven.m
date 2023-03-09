@@ -11,7 +11,7 @@ function U_tot = Ophobningsloven(EQ, vars, varValues, varUssikerheder)
 ds = jacobian(EQ);
 ds_num = subs(ds, vars, varValues);
 for j = 1:length(ds)
-    final(j) = sqrt((ds_num(j) * varUssikerheder(j))^2);
+    final(j) = (ds_num(j) * varUssikerheder(j))^2;
 end
-U_tot = sum(final); 
+U_tot = sqrt(sum(final)); 
 end
