@@ -13,7 +13,7 @@ for i = 1:length(symvar(EQ))
 end
 ds_num = subs(ds, vars, varValues);
 for j = 1:length(ds)
-    final(j) = (ds_num(j) * varUssikerheder(j))^2;
+    final(j) = sqrt((ds_num(j) * varUssikerheder(j))^2);
 end
-U_tot = sqrt(sum(final)); 
+U_tot = sum(final); 
 end
