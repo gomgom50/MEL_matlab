@@ -1,15 +1,11 @@
-function U = Opbhobningsloven(func, symvars, vals, errors)
+function U = Opbhobningsloven(func, symvars, var_list, errors)
 % Lortet skal være i rækkefølge
 
 
 
 n = length(symvars);
 
-var_list = vals;
-
-for i = 1:n
-    ds(i) = diff(func, symvars(i));
-end
+ds = jacobian(func);
 
 ds_vals = subs(ds, symvars, var_list);
 
@@ -18,7 +14,5 @@ for k = 1:n
 end
 
 U = sum(tot_u);
-
-%vpa(unitConvert(sum(tot_u),u.W),3)
 
 end
