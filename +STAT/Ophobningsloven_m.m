@@ -3,7 +3,11 @@ function [y, u_y] = Ophobningsloven_m(f, vars_and_u)
 %
 % input:
 %   f = symbolsk version af funktionen
-%   vars_and_u = 2d array med symboler, måleværdier og usikkerheder fx:
+%   vars_and_u = 2d array med symboler, måleværdier og usikkerheder 
+%   
+%   eksempel:
+%   syms A k T Delta_x
+%   f = k * A * T / Delta_x;
 %   vars_and_u = [[A, A_val, u_A];
 %                 [k, k_val, u_k];
 %                 [T, T_val, u_T_2];
