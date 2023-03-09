@@ -3,7 +3,7 @@ function U_tot = Ophobningsloven(EQ, vars, varValues, varUssikerheder)
 % Input:
 % EQ = Equation som skal laves ophobning om
 % vars = array med var navne (symvar(EQ))
-% varValues = Values af variablerne i samme rællefælge som vars
+% varValues = Values af variablerne i samme rækkefølge som vars
 % varUssikerheder = ussikerhederne i samme rækkefølge som vars og
 % varValues.
 % Output:
