@@ -30,7 +30,7 @@ for i = 1:length(vars_and_u)
         end
     end
 
-    diff_f = vpa(diff(f_new, vars_and_u(i,1)), 6);
+    diff_f = diff(f_new, vars_and_u(i,1));
     bidrag = (subs(diff_f, vars_and_u(i,1), vars_and_u(i,2)) * vars_and_u(i,3))^2;
     bidrag_sum = bidrag + bidrag_sum;
 end
