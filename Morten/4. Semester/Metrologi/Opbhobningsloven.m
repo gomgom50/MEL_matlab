@@ -5,7 +5,8 @@ function U = Opbhobningsloven(func, symvars, var_list, errors)
 
 n = length(symvars);
 
-ds = jacobian(func);
+ds = jacobian(func, symvars);
+
 
 ds_vals = subs(ds, symvars, var_list);
 
