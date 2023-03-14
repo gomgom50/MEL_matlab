@@ -54,7 +54,7 @@ rs = [];
 for d = 1:length(it)
     rs(end+1) = length(find(x<it(d)));
 end
-rs
+rs;
 % Første areal
 area(x(1, 1:rs(1)), pd(1, 1:rs(1)), "DisplayName", names(1), facecolor="r");
 
@@ -65,7 +65,7 @@ colors = ["g","c","m","k","w"];
 for k = 2:length(rs)
 
     area(x(1, rs(k-1):rs(k)), pd(1, rs(k-1):rs(k)), "DisplayName",names(k), facecolor=colors(k-1));
-    
+
 end
 
 % Sidste areal
@@ -78,13 +78,18 @@ hold off
 
 
 % Name generator
-for g = 1:length(it)-1
-    internames(g) = it(g) + " til " + it(g+1);
+if length(it) == 1
+    internames = ["-inf -> " + num2str(it(1)), num2str(it(1)) + " -> inf", "Sum"]';
+elseif length(it) > 1
+    for g = 1:length(it)-1
+        internames(g) = it(g) + " til " + it(g+1);
+    end
+    internames = ["-inf -> " + num2str(it(1)),internames, num2str(it(end)) + " -> inf", "Sum"]';
 end
 
 varnames = ["Interval", "Sandsynligheder", "I procent"];
 
-internames = ["-inf -> " + num2str(it(1)),internames, num2str(it(end)) + " -> inf", "Sum"]';
+
 
 intervals = round([p_int_f, sum(p_int_f)],4)';
 
