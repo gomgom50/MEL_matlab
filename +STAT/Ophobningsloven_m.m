@@ -19,11 +19,12 @@ function [y, u_y] = Ophobningsloven_m(f, vars_and_u)
 %   u_y = usikkerheden på funktionsværdien (double)
 
 bidrag_sum = 0;
+n = size(vars_and_u,1)
 
-for i = 1:length(vars_and_u)
+for i = 1:n
     f_new = f;
 
-    for j = 1:length(vars_and_u)
+    for j = 1:n
         if i ~= j
             f_sub = subs(f_new, vars_and_u(j,1), vars_and_u(j,2));
             f_new = f_sub;
