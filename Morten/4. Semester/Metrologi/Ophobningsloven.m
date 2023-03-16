@@ -1,4 +1,4 @@
-function U = Opbhobningsloven(func, symvars, var_list, errors)
+function U = Ophobningsloven(func, symvars, var_list, errors)
 % Lortet skal være i rækkefølge
 
 
