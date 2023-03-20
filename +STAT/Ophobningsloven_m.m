@@ -19,7 +19,7 @@ function [y, u_y] = Ophobningsloven_m(f, vars_and_u)
 %   u_y = usikkerheden på funktionsværdien (double)
 
 bidrag_sum = 0;
-n = size(vars_and_u,1)
+n = size(vars_and_u,1);
 
 for i = 1:n
     f_new = f;
@@ -40,5 +40,5 @@ u_y = double(sqrt(bidrag_sum));
 y = double(subs(f, vars_and_u(:,1), vars_and_u(:,2)));
 
 pmchar=char(177);
-fprintf(['%.1f' pmchar '%.2f'],y, u_y)
+fprintf(['%.8f' pmchar '%.8f'],y, u_y)
 end
