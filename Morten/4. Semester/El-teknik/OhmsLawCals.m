@@ -9,7 +9,7 @@ while x < 2
 if isempty(p) && ~isempty(v) && ~isempty(i)
     p = v.*i;
 elseif isempty(p) && ~isempty(r) && ~isempty(i)
-    p = i.^2 * r;
+    p = i.^2 .* r;
 elseif isempty(p) && ~isempty(r) && ~isempty(v)
     p = v.^2./r;
 elseif ~isempty(p)
@@ -31,9 +31,9 @@ end
 if isempty(r) && ~isempty(v) && ~isempty(i)
     r = v./i;
 elseif isempty(r) && ~isempty(p) && ~isempty(v)
-    r = v.^2/p;
+    r = v.^2./p;
 elseif isempty(r) && ~isempty(i) && ~isempty(p)
-    r = p./i^2;
+    r = p./i.^2;
 elseif ~isempty(r)
     r = r;
 end
