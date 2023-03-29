@@ -8,7 +8,7 @@ function U_tot = Ophobningsloven(EQ, vars, varValues, varUssikerheder)
 % varValues.
 % Output:
 % U_tot = den samlede ophobning (der er taget kvadarat af den) 
-ds = jacobian(EQ, vars)
+ds = jacobian(EQ, vars);
 ds_num = subs(ds, vars, varValues);
 for j = 1:length(ds)
     final(j) = (ds_num(j) * varUssikerheder(j))^2;
