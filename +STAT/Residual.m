@@ -1,6 +1,9 @@
-function [anal] = untitled2(mdl, data)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+function [anal] = Residual(mdl, data)
+% Residual, tager en regressions model og data
+% data skal være i x:y 
+% input
+% mdl = model data fra regression
+% data = ens data i en x:2 matrice hvor x er collone 1 og y er collone 2
 k = size(data, 2) - 1;
 y = data(:,k+1);
 n = size(data, 1);
