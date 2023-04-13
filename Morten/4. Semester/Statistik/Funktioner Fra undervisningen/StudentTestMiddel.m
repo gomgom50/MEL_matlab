@@ -4,18 +4,11 @@ function OP = StudentTestMiddel(data, H0, testtype, procentKI)
 
 % Deskriptorer
 
-disp("Deskriptorer")
-disp("Stikprøvemiddelværdien beregnes")
-displayFormula("y_bar = Sigma*(y_i)/n")
-middel = mean(data)
+middel = mean(data);
 
-disp("Stikprøvevariansen beregnes")
-displayFormula("s = n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1))")
-varians = var(data)
+varians = var(data);
 
-disp("Stikprøvestandardafvigelsen beregnes")
-displayFormula("s = sqrt(n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1)))")
-stdafv = std(data)
+stdafv = std(data);
 
 alpha_ki = (1 - procentKI/100);
 
@@ -40,12 +33,62 @@ end
 
 
 
+
+%-------------------%
+%----- Formler -----%
+%-------------------%
+
+disp("Stikprøvemiddelværdiens formel")
+displayFormula("y_bar = Sigma*(y_i)/n")
+disp("-----------------------------------------------------------------")
+disp("Stikprøvevariansens formel")
+displayFormula("s = n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1))")
+disp("-----------------------------------------------------------------")
+disp("Stikprøvestandardafvigelsens formel")
+displayFormula("s = sqrt(n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1)))")
+disp("-----------------------------------------------------------------")
+disp("t-værdiens formel")
+
+if testtype == "both"
+    displayFormula("t_df_alpha/2 = -tinv*(alpha/2 * n-1)")
+else
+displayFormula("t_df_alpha = -tinv*(alpha * n-1)")
+end
+
+disp("-----------------------------------------------------------------")
+disp("Teststørrelsens formel")
+displayFormula("t = (y_bar - mu_0) / (s*sqrt(n))")
+
+
+%--------------------%
+%----- Tabeller -----%
+%--------------------%
+
+% Nøgleværdier
+% Deskriptorer
+
+disp("----------------------------------------------------------------------------------------------")
+
+varnames1 = ["Datanavn","Middelværdi","Spredning","Standardafv.","Datapunkter"];
+navn = {inputname(1)};
+n = length(data);
+
+disp(table(cell2table(navn), middel, varians, stdafv, n, VariableNames=varnames1))
+
+
+varnames2 = ["Frihedsgrader","Teststatistik","t0","p-værdi","h-værdi"];
+
+disp(table(stats.df,stats.tstat,test_val,p,h, VariableNames=varnames2))
+
+%----------------%
+%----- Plot -----%
+%----------------%
+
+
 xs = linspace(-15, 15, 300);
 pd = tpdf(xs, stats.df);
 
 tvalpdf = tpdf(stats.tstat, stats.df);
-
-
 
 plot(xs, pd, "DisplayName","Students t-fordeling")
 hold on
@@ -63,38 +106,34 @@ title("Visualisering af t-fordelingen og kritisk(e) grænse(r)")
 scatter(stats.tstat, tvalpdf,"filled", "DisplayName","t-statistik")
 legend('show', 'location','best')
 
-
-
 hold off
 
-disp("t-værdien findes")
-
-if testtype == "both"
-    displayFormula("t_df_alpha/2 = -tinv*(alpha/2 * n-1)")
-else
-displayFormula("t_df_alpha = -tinv*(alpha * n-1)")
-end
-
-
-test_val
-
-disp("Teststørrelsen udregnes, til sammenligning")
-displayFormula("t = (y_bar - mu_0) / (s*sqrt(n))")
-stats.tstat
-
+%-------------------%
+%----- h-værdi -----%
+%-------------------%
 
 if h == 1
 
-    disp("Da h = 1 forkastes nulhypytesen")
+    disp("Da h = 1 forkastes nulhypotesen")
     disp("Ydermere ses det også at t-værdien " + stats.tstat + " overstiger den kritiske grænse på " + test_val)
+    %disp("Samt at p-værdien på " + p + " overstiger " + alpha_ki)
 else
 
-    disp("Da h = 0 forkastes nulhypytesen ikke")
-    disp("Vi er altså " + procentKI + "% overbeviste om at populationsmiddelværdien " + ...
-        "ligger mellem " + ci(1) + " og " + ci(2))
-
+    disp("Da h = 0 forkastes nulhypotesen ikke")
+    disp("Ydermere ses det også at t-værdien " + stats.tstat + " ikke overstiger den kritiske grænse på " + test_val)
+    %disp("Samt at p-værdien på " + p + " ikke overstiger " + alpha_ki)
+    
 end
 
-
+% if h == 1
+% 
+%     disp("Da h = 1 forkastes nulhypytesen")
+%     disp("Ydermere ses det også at t-værdien " + stats.tstat + " overstiger den kritiske grænse på " + test_val)
+% else
+% 
+%     disp("Da h = 0 forkastes nulhypytesen ikke")
+%     disp("Vi er altså " + procentKI + "% overbeviste om at populationsmiddelværdien " + ...
+%         "ligger mellem " + ci(1) + " og " + ci(2))
+% end
 
 end
