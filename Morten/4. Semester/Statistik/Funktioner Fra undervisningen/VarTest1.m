@@ -1,4 +1,4 @@
-function OP = StudentTestMiddel(data, H0, testtype, procentKI)
+function OP = VarTest1(data, V0, testtype, procentKI)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -16,18 +16,18 @@ alpha_ki = (1 - procentKI/100);
 
 if testtype == "right"
 
-    [h,p,ci,stats] = ttest(data, H0,"Tail","right","Alpha", alpha_ki);
-    test_val = tinv(procentKI/100, length(data) - 1);
+    [h,p,ci,stats] = vartest(data, V0,"Tail","right","Alpha", alpha_ki);
+    test_val = chi2inv(procentKI/100, length(data) - 1);
 
 elseif testtype == "left"
 
-    [h,p,ci,stats] = ttest(data, H0,"Tail","left","Alpha", alpha_ki);
-    test_val = tinv(procentKI/100, length(data) - 1);
+    [h,p,ci,stats] = vartest(data, V0,"Tail","left","Alpha", alpha_ki);
+    test_val = chi2inv(procentKI/100, length(data) - 1);
 
 elseif testtype == "both"
 
-    [h,p,ci,stats] = ttest(data, H0,"Tail","both","Alpha", alpha_ki/2);
-    test_val = tinv((procentKI/100 + alpha_ki/2), length(data) - 1);
+    [h,p,ci,stats] = vartest(data, V0,"Tail","both","Alpha", alpha_ki/2);
+    test_val = chi2inv((procentKI/100 + alpha_ki/2), length(data) - 1);
 
 end
 
@@ -50,9 +50,9 @@ disp("-----------------------------------------------------------------")
 disp("t-værdiens formel")
 
 if testtype == "both"
-    displayFormula("t_df_alpha/2 = -tinv*(alpha/2 * n-1)")
+    displayFormula("t_df_alpha/2 = -chi2inv*(alpha/2 * n-1)")
 else
-displayFormula("t_df_alpha = -tinv*(alpha * n-1)")
+displayFormula("t_df_alpha = -chi2inv*(alpha * n-1)")
 end
 
 disp("-----------------------------------------------------------------")
@@ -78,17 +78,17 @@ disp(table(cell2table(navn), middel, varians, stdafv, n, VariableNames=varnames1
 
 varnames2 = ["Frihedsgrader","Teststatistik","t0","p-værdi","h-værdi"];
 
-disp(table(stats.df,vpa(stats.tstat,2),test_val,p,h, VariableNames=varnames2))
+disp(table(stats.df,vpa(stats.chisqstat,2),test_val,p,h, VariableNames=varnames2))
 
 %----------------%
 %----- Plot -----%
 %----------------%
 
 
-xs = linspace(-15, 15, 300);
-pd = tpdf(xs, stats.df);
+xs = linspace(0, 80, 300);
+pd = chi2pdf(xs, stats.df);
 
-tvalpdf = tpdf(stats.tstat, stats.df);
+tvalpdf = chi2pdf(stats.chisqstat, stats.df);
 
 plot(xs, pd, "DisplayName","Students t-fordeling")
 hold on
@@ -103,7 +103,7 @@ elseif testtype == "both"
 end
 
 title("Visualisering af t-fordelingen og kritisk(e) grænse(r)")
-scatter(stats.tstat, tvalpdf,"filled", "DisplayName","t-statistik")
+scatter(stats.chisqstat, tvalpdf,"filled", "DisplayName","t-statistik")
 legend('show', 'location','best')
 
 hold off
@@ -115,12 +115,12 @@ hold off
 if h == 1
 
     disp("Da h = 1 forkastes nulhypotesen")
-    disp("Ydermere ses det også at t-værdien " + stats.tstat + " overstiger den kritiske grænse på " + test_val)
+    disp("Ydermere ses det også at t-værdien " + stats.chisqstat + " overstiger den kritiske grænse på " + test_val)
     %disp("Samt at p-værdien på " + p + " overstiger " + alpha_ki)
 else
 
     disp("Da h = 0 forkastes nulhypotesen ikke")
-    disp("Ydermere ses det også at t-værdien " + stats.tstat + " ikke overstiger den kritiske grænse på " + test_val)
+    disp("Ydermere ses det også at t-værdien " + stats.chisqstat + " ikke overstiger den kritiske grænse på " + test_val)
     %disp("Samt at p-værdien på " + p + " ikke overstiger " + alpha_ki)
     
 end
@@ -128,7 +128,7 @@ end
 % if h == 1
 % 
 %     disp("Da h = 1 forkastes nulhypytesen")
-%     disp("Ydermere ses det også at t-værdien " + stats.tstat + " overstiger den kritiske grænse på " + test_val)
+%     disp("Ydermere ses det også at t-værdien " + stats.chisqstat + " overstiger den kritiske grænse på " + test_val)
 % else
 % 
 %     disp("Da h = 0 forkastes nulhypytesen ikke")
