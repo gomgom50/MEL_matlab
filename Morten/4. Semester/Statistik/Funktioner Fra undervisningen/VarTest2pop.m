@@ -28,7 +28,7 @@ elseif testtype == "both"
 
 end
 
-F0 = var(data(:))/var(data(:));
+F0 = var(data(:))/var(data2(:));
 
 % if isempty(deltaH0)
 %     t = stats.fstat;
@@ -100,6 +100,8 @@ disp("-----------------------------------------------------------------")
 % varnames2 = ["Frihedsgrader","Pooled varians","Pooled spredning","Teststatistik","t0","p-værdi","h-værdi"];
 % 
 % disp(table(dfs,S,sp,t,t0,p,h, VariableNames=varnames2))
+
+
 
 
 %----------------%
