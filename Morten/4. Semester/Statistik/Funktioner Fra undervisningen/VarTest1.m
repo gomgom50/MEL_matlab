@@ -50,9 +50,9 @@ disp("-----------------------------------------------------------------")
 disp("t-værdiens formel")
 
 if testtype == "both"
-    displayFormula("t_df_alpha/2 = -chi2inv*(alpha/2 * n-1)")
+    displayFormula("t_df_alpha/2 = chi2inv*(alpha/2 * n-1)")
 else
-displayFormula("t_df_alpha = -chi2inv*(alpha * n-1)")
+displayFormula("t_df_alpha = chi2inv*(alpha * n-1)")
 end
 
 disp("-----------------------------------------------------------------")
