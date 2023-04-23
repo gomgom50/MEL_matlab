@@ -1,4 +1,4 @@
-function OP = Studenttest2pop(data, data2, testtype, procentKI, deltaH0)
+function OP = ttest2popMiddelInd(data, data2, testtype, procentKI, deltaH0)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -100,7 +100,7 @@ disp("-----------------------------------------------------------------")
 
 % Nøgleværdier
 % Deskriptorer
-names = [inputname(1);inputname(2)];
+names = ["Input 1";"Input 2"];
 ybars = [ybar1; ybar2];
 vars = [var1; var2];
 stds = [std1;std2];

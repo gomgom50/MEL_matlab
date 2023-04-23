@@ -56,7 +56,7 @@ if  ~isempty(std)
         % Teststørrelse
         disp("Teststørrelsen udregnes, til sammenligning")
         displayFormula("z = y_bar - mu_0 / (sigma*sqrt(n))")
-        test = (y_bar_x - middel) / (sigma/sqrt(obs))
+        test = (y_bar_x - middel) / (std/sqrt(obs));
     elseif isempty(middel)
         disp("Ingen sand middelværdi opgivet")
     end
@@ -133,26 +133,28 @@ int_names = ["Nedre"; "Øvre"];
 
 disp(table(int_names, round(ki_mu, 4), test_names, test_vals, disk, disk_vals, 'VariableNames',["Interval","Værdier","Test type","Testværdier","Værdi", "Deskriptorer"]))
 
-% Til plot
-% 
-% xs = min(x)*0.95:0.1:max(x)*1.05;
-% 
-% lower = find(xs < ki_mu(1))
-% upper = find(xs > ki_mu(2))
-% 
-% pd = pdf(pd_ki, xs);
-% 
-% plot(xs, pd, "DisplayName","Fordelingsplot"), grid()
-% hold on
-% 
-% area(xs(1:length(lower)), pd(1:length(lower)), "DisplayName","Nedre KI "+ki_mu(1))
-% area(xs(upper(1):end), pd(upper(1):end), "DisplayName","Øvre KI "+ki_mu(2))
-% 
-% alpha(0.5)
-% title(procentKI + "% konfidensinterval")
-% legend('show', 'location','best')
-% hold off
-% 
+%Til plot
+
+xs = min(x)*0.99:0.001:max(x)*1.01;
+
+lower = find(xs < ki_mu(1));
+upper = find(xs > ki_mu(2));
+
+pd = pdf(pd_ki, xs);
+
+plot(xs, pd, "DisplayName","Fordelingsplot"), grid()
+hold on
+
+area(xs(1:length(lower)), pd(1:length(lower)), "DisplayName","Nedre KI "+ki_mu(1))
+area(xs(upper(1):end), pd(upper(1):end), "DisplayName","Øvre KI "+ki_mu(2))
+
+alpha(0.5)
+title(procentKI + "% Temperatur ned konfidensinterval")
+xlabel("Middelværdi")
+ylabel("% sandsynlighed")
+legend('show', 'location','best')
+hold off
+
 
 
 
