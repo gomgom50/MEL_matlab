@@ -1,4 +1,4 @@
-function [anal] = Residual(mdl, data)
+function anal = Residual(mdl, data)
 % Residual, tager en regressions model og data
 % data skal være i x:y 
 % input
@@ -36,8 +36,8 @@ end
 [yhat, yci] = predict(mdl, x);
 resid = y - yhat;
 
-figure(1)
-scatter(yhat, resid, 30, "filled")
+figure(1);
+scatter(yhat, resid, 30, "filled");
 ylabel("e");
 xlabel("yhat");
 
@@ -55,6 +55,7 @@ anal.k = k;
 anal.n = n;
 anal.lev_limit = lev_limit;
 anal.rst_limit = rst_limit;
+
 
 
 
