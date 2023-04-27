@@ -1,5 +1,6 @@
-function output = OhmsLawCals(p, i, v, r)
+function output = OhmsLawCals(p, i, v, r, UNITS)
 % Funktion til beregning af alle ohm lov relationer
+% UNITS "ja" eller "nej"
 
 x = 0;
 
@@ -51,13 +52,17 @@ end
 
 end
 
-% if type == "parallel"
-%     P = antal * p
-%     V = i.*antal.*r
-%     P_ledning = (antal.*i).^2.*r
-% elseif type == "serie"
-%     "noget"
-% end
+if UNITS == "ja"
+p = vpa(unitConvert(p,"SI","Derived"), 6);
+v = vpa(unitConvert(v,"SI","Derived"), 6);
+i = vpa(unitConvert(i,"SI","Derived"), 6);
+r = vpa(unitConvert(r,"SI","Derived"), 6);
+else
+p = vpa(p, 6);
+v = vpa(v,6);
+i = vpa(i, 6);
+r = vpa(r, 6);
+end
 
 f1 = 'P';
 f2 = 'I';
