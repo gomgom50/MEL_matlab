@@ -1,0 +1,26 @@
+Efterår 2021
+
+Opgave 1. Se også separat dokument med løsningsforslag.
+a) 0.392s
+b) 3.836
+c) 735.7
+d) 383
+e) 0.33m (0.081 statisk)
+
+Opgave 2
+a) m = 9kg
+b) x_G = -1.0m, y_G = -0.75m
+c) I = 20.25 kg*m^2
+d) Skitse af FLD og KD
+e) alpha = 4.36 rad/s^2
+f) a_x = 3.27 m/s^2, a_y = -4.36 m/s^2
+g) A_x = 29.43 N, A_y = 49.05 N
+
+Opgave 3
+a) Bevæglsesligning
+b) 1.41
+c) 0.3536
+d) 1.323
+e) Indsæt løsning i bevægelsesligning og vis at det går op
+f) Anvend startbetingelser for at bestemme konstanterne i den generelle løsning x(t) = x_c(t) + x_p(t), hvor x_c(t) er løsningen til den homogene bevægelsesligning, og x_p(t) er den partikulære løsning til det ikke homogene system.
+g) Plot x(t) sammen med den statiske flytning.
