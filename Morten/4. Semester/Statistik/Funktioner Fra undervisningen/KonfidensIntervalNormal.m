@@ -18,7 +18,7 @@ if  ~isempty(std)
     disp("Først regnes stikprøvemiddelværdien")
     displayFormula("y_bar = Sigma*(y_i)/n")
 
-    y_bar_x = 1/obs * sum(data)
+    y_bar_x = 1/obs * sum(data);
 
     disp("Z værdien skal findes, vha. følgende formel")
 
@@ -27,7 +27,7 @@ if  ~isempty(std)
     alpha_ki = (1 - procentKI/100)/2;
     % Z-værdi
     z_alpha_halve = norminv(alpha_ki);
-    test_vals = [z_alpha_halve; abs(z_alpha_halve)]
+    test_vals = [z_alpha_halve; abs(z_alpha_halve)];
 
     test_names = ["Z nedre";" Z øvre"];
 
@@ -35,14 +35,14 @@ if  ~isempty(std)
     pd_ki = makedist("Normal","mu",y_bar_x,"sigma",std);
 
 
-
+    disp("Dernæst regnes " + procentKI  + "% konfidensintervallets værdier")
 
     displayFormula("Upper = y_bar + z_alpha/2 * sigma/sqrt(n)")
 
-    upper_t = y_bar_x + z_alpha_halve*std/sqrt(obs)
+    upper_t = y_bar_x + z_alpha_halve*std/sqrt(obs);
 
     displayFormula("Lower = y_bar - z_alpha/2 * sigma/sqrt(n)")
-    lower_t = y_bar_x - z_alpha_halve*std/sqrt(obs)
+    lower_t = y_bar_x - z_alpha_halve*std/sqrt(obs);
 
     ki_mu = [upper_t; lower_t];
 
@@ -52,14 +52,14 @@ if  ~isempty(std)
 
     disk_vals = [y_bar_x, std]';
 
-    if ~isempty(middel)
-        % Teststørrelse
-        disp("Teststørrelsen udregnes, til sammenligning")
-        displayFormula("z = y_bar - mu_0 / (sigma*sqrt(n))")
-        test = (y_bar_x - middel) / (std/sqrt(obs));
-    elseif isempty(middel)
-        disp("Ingen sand middelværdi opgivet")
-    end
+%     if ~isempty(middel)
+%         % Teststørrelse
+%         disp("Teststørrelsen udregnes, til sammenligning")
+%         displayFormula("z = y_bar - mu_0 / (sigma*sqrt(n))")
+%         test = (y_bar_x - middel) / (std/sqrt(obs));
+%     elseif isempty(middel)
+%         disp("Ingen sand middelværdi opgivet")
+%     end
 
 elseif isempty(std)
 
@@ -76,14 +76,14 @@ elseif isempty(std)
     obs = length(data);
 
     c
-    y_bar_x = 1/obs * sum(data)
+    y_bar_x = 1/obs * sum(data);
 
     % Stikprøvevarians
     s_2 = (obs * sum(data.^2) - sum(data)^2)/(obs*(obs-1));
 
     disp("Stikprøvestandardafvigelsen beregnes")
     displayFormula("s = sqrt(n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1)))")
-    s_val = sqrt(s_2)
+    s_val = sqrt(s_2);
 
     alpha_ki = (1 - procentKI/100);
 
@@ -91,17 +91,17 @@ elseif isempty(std)
     disp("t-værdien findes")
     displayFormula("t_df_alpha/2 = -tinv*(alpha/2 * n-1)")
     t_alpha2 = -tinv(alpha_ki, obs-1);
-    test_vals = [-t_alpha2; t_alpha2]
+    test_vals = [-t_alpha2; t_alpha2];
     test_names = ["t nedre";"t øvre"];
 
 
     disp("Øvre konfidensinterval værdi")
     displayFormula("y_bar + t_df_alpha/2 * s/sqrt(n)")
-    upper_t = y_bar_x + t_alpha2*s_val/sqrt(obs)
+    upper_t = y_bar_x + t_alpha2*s_val/sqrt(obs);
 
     disp("Nedre konfidensinterval værdi")
     displayFormula("y_bar - t_df_alpha/2 * s/sqrt(n)")
-    lower_t = y_bar_x - t_alpha2*s_val/sqrt(obs)
+    lower_t = y_bar_x - t_alpha2*s_val/sqrt(obs);
 
     ki_mu = [lower_t; upper_t];
 
@@ -111,14 +111,14 @@ elseif isempty(std)
 
     disk_vals = [y_bar_x, s_val]';
 
-    if ~isempty(middel)
-        % Teststørrelse
-        disp("Teststørrelsen udregnes, til sammenligning")
-        displayFormula("t = (y_bar - mu_0) / (s*sqrt(n))")
-        test = (y_bar_x - middel) / (s_val/sqrt(obs))
-    elseif isempty(middel)
-        disp("Ingen sand middelværdi opgivet")
-    end
+%     if ~isempty(middel)
+%         % Teststørrelse
+%         disp("Teststørrelsen udregnes, til sammenligning")
+%         displayFormula("t = (y_bar - mu_0) / (s*sqrt(n))")
+%         test = (y_bar_x - middel) / (s_val/sqrt(obs));
+%     elseif isempty(middel)
+%         disp("Ingen sand middelværdi opgivet")
+%     end
 
 % Test til 2 stikprøver der er t-fordelte
 
@@ -135,27 +135,30 @@ disp(table(int_names, round(ki_mu, 4), test_names, test_vals, disk, disk_vals, '
 
 %Til plot
 
-xs = min(x)*0.99:0.001:max(x)*1.01;
+xs = min(x)*0.95:0.001:max(x)*1.05;
 
 lower = find(xs < ki_mu(1));
 upper = find(xs > ki_mu(2));
 
 pd = pdf(pd_ki, xs);
 
+figure
 plot(xs, pd, "DisplayName","Fordelingsplot"), grid()
 hold on
 
-area(xs(1:length(lower)), pd(1:length(lower)), "DisplayName","Nedre KI "+ki_mu(1))
-area(xs(upper(1):end), pd(upper(1):end), "DisplayName","Øvre KI "+ki_mu(2))
+area(xs(1:length(lower)), pd(1:length(lower)), "DisplayName","Nedre KI "+round(ki_mu(1),2))
+area(xs(upper(1):end), pd(upper(1):end), "DisplayName","Øvre KI "+round(ki_mu(2),2))
+
+hold off
 
 alpha(0.5)
-title(procentKI + "% Temperatur ned konfidensinterval")
+title(procentKI + "% Temperatur med konfidensinterval")
 xlabel("Middelværdi")
 ylabel("% sandsynlighed")
 legend('show', 'location','best')
-hold off
 
-
+Output.KI = ki_mu;
+Output.test_alpha = test_vals;
 
 
 end

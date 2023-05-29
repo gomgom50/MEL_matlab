@@ -22,12 +22,12 @@ if testtype == "right"
 elseif testtype == "left"
 
     [h,p,ci,stats] = ttest(data, H0,"Tail","left","Alpha", alpha_ki);
-    test_val = tinv(procentKI/100, length(data) - 1);
+    test_val = tinv(1-procentKI/100, length(data) - 1);
 
 elseif testtype == "both"
 
     [h,p,ci,stats] = ttest(data, H0,"Tail","both","Alpha", alpha_ki/2);
-    test_val = tinv((procentKI/100 + alpha_ki/2), length(data) - 1);
+    test_val = tinv((1-procentKI/100 + alpha_ki/2), length(data) - 1);
 
 end
 
@@ -50,9 +50,9 @@ disp("-----------------------------------------------------------------")
 disp("t-værdiens formel")
 
 if testtype == "both"
-    displayFormula("t_df_alpha/2 = -tinv*(alpha/2 * n-1)")
+    displayFormula("t_df_alpha/2 = tinv*(alpha/2 * n-1)")
 else
-displayFormula("t_df_alpha = -tinv*(alpha * n-1)")
+displayFormula("t_df_alpha = tinv*(alpha * n-1)")
 end
 
 disp("-----------------------------------------------------------------")
@@ -69,16 +69,16 @@ displayFormula("t = (y_bar - mu_0) / (s*sqrt(n))")
 
 disp("----------------------------------------------------------------------------------------------")
 
-varnames1 = ["Datanavn","Middelværdi","Spredning","Standardafv.","Datapunkter"];
+varnames1 = ["Datanavn","Middelværdi","Varians","Standardafv.","Datapunkter"];
 navn = {inputname(1)};
 n = length(data);
 
-disp(table(cell2table(navn), middel, varians, stdafv, n, VariableNames=varnames1))
+disp(table(cell2table(navn), round(middel,3), round(varians,3), round(stdafv,3), n, VariableNames=varnames1))
 
 
 varnames2 = ["Frihedsgrader","Teststatistik","t0","p-værdi","h-værdi"];
 
-disp(table(stats.df,vpa(stats.tstat,2),test_val,p,h, VariableNames=varnames2))
+disp(table(stats.df,vpa(stats.tstat,3),test_val,p,h, VariableNames=varnames2))
 
 %----------------%
 %----- Plot -----%
@@ -90,6 +90,7 @@ pd = tpdf(xs, stats.df);
 
 tvalpdf = tpdf(stats.tstat, stats.df);
 
+figure
 plot(xs, pd, "DisplayName","Students t-fordeling")
 hold on
 if testtype == "right" || testtype == "left"
