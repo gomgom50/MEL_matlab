@@ -1,5 +1,7 @@
 function triangle = solveTriangle(pyCommand)
     % This MATLAB function wraps the execution of Python code which solves a triangle problem.
+    %KRÆVER trianglesolver package installeret til python envoirnment
+    %matlab rguer 
     % 
     % Inputs:
     % pyCommand - A string containing the Python command to be executed. The command should be written for 
@@ -21,6 +23,7 @@ function triangle = solveTriangle(pyCommand)
     
     % Create a struct to hold the output
     triangle = struct('a', list(1), 'b', list(2), 'c', list(3), ...
-                      'A', list(4), 'B', list(5), 'C', list(6));
-    
+                      'A', list(4), 'B', list(5), 'C', list(6), ...
+                      'A_deg', rad2deg(list(4)), 'B_deg', rad2deg(list(5)), 'C_deg', rad2deg(list(6)));
+
 end
