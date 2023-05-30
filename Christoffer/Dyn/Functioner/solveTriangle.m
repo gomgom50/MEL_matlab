@@ -22,4 +22,5 @@ function triangle = solveTriangle(pyCommand)
     % Create a struct to hold the output
     triangle = struct('a', list(1), 'b', list(2), 'c', list(3), ...
                       'A', list(4), 'B', list(5), 'C', list(6));
+    
 end
