@@ -42,39 +42,47 @@ F0 = var(data(:))/var(data2(:));
 %----- Formler -----%
 %-------------------%
 
-disp("Frihedsgradernes formel")
-displayFormula("df = n_1 + n_2 - 2")
+
+disp("Teststørrelsens værdi")
+displayFormula("F_0 = s_1^2/s_2^2")
 disp("-----------------------------------------------------------------")
 
-disp("Stikprøvemiddelværdiernes formel")
-displayFormula("y_bar = Sigma*(y_i)/n")
-disp("-----------------------------------------------------------------")
-
-disp("Stikprøvevariansernes formel")
-displayFormula("s = n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1))")
-disp("-----------------------------------------------------------------")
-
-disp("Pooled standardafvigelsens formel")
-displayFormula("s_p = sqrt(((n_1-1)*s_1^2 + (n_2 - 1)*s_2^2)/(n_1 + n_2 - 2))")
-disp("-----------------------------------------------------------------")
+% 
+% 
+% disp("Frihedsgradernes formel")
+% displayFormula("df = n_1 + n_2 - 2")
+% disp("-----------------------------------------------------------------")
+% 
+% disp("Stikprøvemiddelværdiernes formel")
+% displayFormula("y_bar = Sigma*(y_i)/n")
+% disp("-----------------------------------------------------------------")
+% 
+% disp("Stikprøvevariansernes formel")
+% displayFormula("s = n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1))")
+% disp("-----------------------------------------------------------------")
+% 
+% disp("Pooled standardafvigelsens formel")
+% displayFormula("s_p = sqrt(((n_1-1)*s_1^2 + (n_2 - 1)*s_2^2)/(n_1 + n_2 - 2))");
+% disp("-----------------------------------------------------------------")
 
 disp("t-værdiens formel")
 
 if testtype == "both"
-    displayFormula("t_df_alpha/2 = -finv*(alpha/2 * df)")
+    displayFormula("F*alpha/2*nedre = finv*(alpha/2 * df)")
+    displayFormula("F*alpha/2*oevre = finv*(1-alpha/2 * df)")
 else
-displayFormula("t_df_alpha = -finv*(alpha * df)")
+    displayFormula("F_alpha = finv*(alpha * df)")
 end
 disp("-----------------------------------------------------------------")
 
-disp("Teststørrelsens formel")
-
-if isempty(deltaH0)
-    displayFormula("t_val = (y_bar1 - y_bar2) / (s_p*sqrt((1/n1) * (1/n2)))")
-else
-    displayFormula("t_val = (y_bar1 - y_bar2 - delta) / (s_p*sqrt((1/n1) * (1/n2)))")
-end
-disp("-----------------------------------------------------------------")
+% disp("Teststørrelsens formel")
+% 
+% if isempty(deltaH0)
+%     displayFormula("t_val = (y_bar1 - y_bar2) / (s_p*sqrt((1/n1) * (1/n2)))")
+% else
+%     displayFormula("t_val = (y_bar1 - y_bar2 - delta) / (s_p*sqrt((1/n1) * (1/n2)))")
+% end
+% disp("-----------------------------------------------------------------")
 
 
 
@@ -101,6 +109,14 @@ disp("-----------------------------------------------------------------")
 % 
 % disp(table(dfs,S,sp,t,t0,p,h, VariableNames=varnames2))
 
+if testtype == "both"
+    varnames2 = ["Signifikansniveau","Nedre grænse","Øvre grænse","Teststatistik"];
+    disp(table(alpha_ki,t_low,t0, F0, VariableNames=varnames2))
+
+else
+    varnames1 = ["Signifikansniveau","Grænse","Teststatistik"];
+    disp(table(alpha_ki,t0, F0, VariableNames=varnames1))
+end
 
 
 
