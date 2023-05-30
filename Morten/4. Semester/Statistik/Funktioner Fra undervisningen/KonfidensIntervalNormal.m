@@ -75,7 +75,7 @@ elseif isempty(std)
 
     obs = length(data);
 
-    c
+    
     y_bar_x = 1/obs * sum(data);
 
     % Stikprøvevarians
@@ -85,7 +85,7 @@ elseif isempty(std)
     displayFormula("s = sqrt(n*(Sigma(y_i^2) - Sigma(y_i)^2)/(n*(n-1)))")
     s_val = sqrt(s_2);
 
-    alpha_ki = (1 - procentKI/100);
+    alpha_ki = (1 - procentKI/100)/2;
 
 
     disp("t-værdien findes")
