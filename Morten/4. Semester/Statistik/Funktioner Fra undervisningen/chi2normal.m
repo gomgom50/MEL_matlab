@@ -33,7 +33,7 @@ end
 
 chisqstat = chi2inv(procentKI, df);
 
-xs = linspace(0, (chisqstat+10), 300);
+xs = linspace(0, (chisqstat+6), 300);
 pd = chi2pdf(xs, df);
 
 tvalpdf = chi2pdf(chi2_0, df);
@@ -46,6 +46,7 @@ disp(table("%"+alpha_ki*100,params,df,chisqstat,chi2_0, VariableNames=varnames))
 
 
 %plot
+figure
 plot(xs, pd, "DisplayName","Chi2-fordelingen"), grid("on")
 hold on
 

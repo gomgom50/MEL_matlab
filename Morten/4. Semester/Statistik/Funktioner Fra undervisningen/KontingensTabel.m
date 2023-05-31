@@ -24,11 +24,12 @@ end
 
 
 for k = 1:rows
-    datanames(k,1) = "Data " + string(k);
+    datanames(k,1) = "Menu " + string(k);
 
 end
 
-disp(table(datanames, E, 'VariableNames',["Data navn", "Forventede værdier"]))
+
+disp(table(datanames, E, 'VariableNames',["Data navn", "Afdeling A | Afdeling B"]))
 
 
 
