@@ -30,11 +30,13 @@ end
 
 F0 = var(data(:))/var(data2(:));
 
-% if isempty(deltaH0)
-%     t = stats.fstat;
-% elseif ~isempty(deltaH0)
-% 
+% if deltaH0 == 0
 %     t = (ybar1 - ybar2 - deltaH0)/(sp * sqrt(1/nn1 + 1/nn2));
+%     
+% else 
+% 
+%     t = stats.fstat;
+%     
 % end
 
 
