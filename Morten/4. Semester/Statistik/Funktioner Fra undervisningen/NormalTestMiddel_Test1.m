@@ -1,6 +1,6 @@
-function OP = NormalTestMiddel(data, H0, testtype, procentKI)
+function OP = NormalTestMiddel_Test1(data, H0, testtype, procentKI)
 %UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+% Detailed explanation goes here
 
 % Deskriptorer
 
@@ -29,7 +29,7 @@ elseif testtype == "left"
 
 elseif testtype == "both"
 
-    [h,p,ci,stats] = ztest(data, H0,"Tail","both","Alpha", 0.025);
+    [h,p,ci,stats] = ztest(data, H0,"Tail","both","Alpha", alpha_ki);
     test_val = norminv((alpha_ki/2), middel,stdafv);
 
     

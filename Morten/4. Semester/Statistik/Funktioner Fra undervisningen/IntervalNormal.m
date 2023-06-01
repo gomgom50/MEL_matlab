@@ -97,5 +97,6 @@ intervals_procent = num2str(intervals*100) + "%";
 
 disp(table(internames, intervals, intervals_procent, VariableNames=varnames))
 
+Output.sshs = p_int_f;
 
 end

@@ -1,4 +1,4 @@
-function OP = ttest2popMiddelInd(data, data2, testtype, procentKI, deltaH0)
+function OP = ttest2popMiddelInd_Test4(data, data2, testtype, procentKI, deltaH0)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 

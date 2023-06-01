@@ -1,4 +1,4 @@
-function OP = StudentTestMiddel(data, H0, testtype, procentKI)
+function OP = StudentTestMiddel_Test2(data, H0, testtype, procentKI)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 

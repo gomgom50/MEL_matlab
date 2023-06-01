@@ -1,4 +1,4 @@
-function OP = VarTest2pop(data, data2, testtype, procentKI, deltaH0)
+function OP = VarTest2pop_Test6(data, data2, testtype, procentKI, deltaH0)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 

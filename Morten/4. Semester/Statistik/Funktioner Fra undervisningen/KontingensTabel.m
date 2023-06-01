@@ -29,7 +29,7 @@ for k = 1:rows
 end
 
 
-disp(table(datanames, E, 'VariableNames',["Data navn", "Afdeling A | Afdeling B"]))
+disp(table(datanames, E, 'VariableNames',["Data navn", "SL1 | SL2"]))
 
 
 

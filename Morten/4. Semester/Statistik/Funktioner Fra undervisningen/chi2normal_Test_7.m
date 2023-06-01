@@ -1,4 +1,4 @@
-function output = chi2normal(obs, forv, procentKI, params, kategorier)
+function output = chi2normal_Test_7(obs, forv, procentKI, params, kategorier)
 % obs og forv skal være i formatet obs(1, :)
 
 
@@ -22,7 +22,7 @@ alpha_ki = (1 - procentKI/100);
 
 procentKI = procentKI/100;
 
-
+% Teststørrelsens
 chi2_0 = sum(((obs - forv) .^ 2) ./ forv);
 
 if nargin == 4 || isempty(kategorier)
@@ -31,6 +31,7 @@ elseif nargin == 5 || ~isempty(kategorier)
     df =  kategorier - params - 1;
 end
 
+% Kritisk
 chisqstat = chi2inv(procentKI, df);
 
 xs = linspace(0, (chisqstat+6), 300);

@@ -1,4 +1,4 @@
-function OP = VarTest1(data, V0, testtype, procentKI)
+function OP = VarTest1_Test5(data, V0, testtype, procentKI)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -22,7 +22,7 @@ if testtype == "right"
 elseif testtype == "left"
 
     [h,p,ci,stats] = vartest(data, V0,"Tail","left","Alpha", alpha_ki);
-    test_val = chi2inv(procentKI/100, length(data) - 1);
+    test_val = chi2inv(1-procentKI/100, length(data) - 1);
 
 elseif testtype == "both"
 
