@@ -131,7 +131,7 @@ pd = fpdf(xs, stats.df1, stats.df2);
 
 tvalpdf = fpdf(F0, stats.df1, stats.df2);
 
-plot(xs, pd, "DisplayName","Students t-fordeling")
+plot(xs, pd, "DisplayName","F-fordeling")
 hold on
 if testtype == "right" || testtype == "left"
     xline(t0, '--', "DisplayName","Kritiske grænse")
@@ -143,8 +143,8 @@ elseif testtype == "both"
 
 end
 
-title("Visualisering af t-fordelingen og kritisk(e) grænse(r)")
-xlabel("t-værdier"), ylabel("t-statistik sandsynligheder")
+title("Visualisering af F-fordelingen og kritisk(e) grænse(r)")
+xlabel("t-værdier"), ylabel("F-statistik sandsynligheder")
 grid("on")
 scatter(F0, tvalpdf,"filled", "DisplayName","t-statistik")
 legend('show', 'location','best')
@@ -158,12 +158,12 @@ hold off
 if h == 1
 
     disp("Da h = 1 forkastes nulhypotesen")
-    disp("Ydermere ses det også at t-værdien " + F0 + " overstiger den kritiske grænse på " + t0)
+    disp("Ydermere ses det også at F-værdien " + F0 + " overstiger den kritiske grænse på " + t0)
     %disp("Samt at p-værdien på " + p + " overstiger " + alpha_ki)
 else
 
     disp("Da h = 0 forkastes nulhypotesen ikke")
-    disp("Ydermere ses det også at t-værdien " + F0 + " ikke overstiger den kritiske grænse på " + t0)
+    disp("Ydermere ses det også at F-værdien " + F0 + " ikke overstiger den kritiske grænse på " + t0)
     %disp("Samt at p-værdien på " + p + " ikke overstiger " + alpha_ki)
     
 end

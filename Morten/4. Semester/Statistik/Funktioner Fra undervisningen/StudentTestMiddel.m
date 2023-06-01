@@ -18,7 +18,8 @@ if testtype == "right"
 
     [h,p,ci,stats] = ttest(data, H0,"Tail","right","Alpha", alpha_ki);
     test_val = tinv(procentKI/100, length(data) - 1);
-
+    
+    disp("H0 afvises, hvis t > t0 (hvor t0 er teststatistikken)")
 
 
 elseif testtype == "left"
@@ -26,16 +27,18 @@ elseif testtype == "left"
     [h,p,ci,stats] = ttest(data, H0,"Tail","left","Alpha", alpha_ki);
     test_val = tinv(1-procentKI/100, length(data) - 1);
 
+    disp("H0 afvises, hvis t < t0 (hvor t0 er teststatistikken)")
+
 elseif testtype == "both"
 
     [h,p,ci,stats] = ttest(data, H0,"Tail","both","Alpha", 0.025);
     test_val = tinv((alpha_ki/2), length(data) - 1);
 
-
+    disp("H0 afvises, hvis t_nedre < t0 > t_øvre (hvor t0 er teststatistikken)")
 
 end
 
-stats.tstat
+
 
 
 %-------------------%
@@ -60,8 +63,8 @@ else
 end
 
 disp("-----------------------------------------------------------------")
-disp("Teststørrelsens formel")
-displayFormula("t = (y_bar - mu_0) / (s*sqrt(n))")
+disp("Teststatistikkens formel")
+displayFormula("t_0 = (y_bar - mu_0) / (s*sqrt(n))")
 
 
 %--------------------%
@@ -123,7 +126,7 @@ elseif testtype == "both"
 end
 
 title("Visualisering af t-fordelingen og kritisk(e) grænse(r)")
-scatter(stats.tstat, tvalpdf,"filled", "DisplayName","t-statistik")
+scatter(stats.tstat, tvalpdf,"filled", "DisplayName","t_0")
 legend('show', 'location','best')
 
 hold off

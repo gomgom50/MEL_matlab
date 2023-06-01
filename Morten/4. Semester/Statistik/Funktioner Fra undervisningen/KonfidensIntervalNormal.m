@@ -152,7 +152,7 @@ area(xs(upper(1):end), pd(upper(1):end), "DisplayName","Øvre KI "+round(ki_mu(2
 hold off
 
 alpha(0.5)
-title(procentKI + "% Temperatur med konfidensinterval")
+title(procentKI + "% Konfidensinterval for middelværdien")
 xlabel("Middelværdi")
 ylabel("% sandsynlighed")
 legend('show', 'location','best')
