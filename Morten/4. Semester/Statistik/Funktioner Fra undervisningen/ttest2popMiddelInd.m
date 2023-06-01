@@ -30,17 +30,17 @@ alpha_ki = (1 - procentKI/100);
 if testtype == "right"
 
     [h,p,ci,stats] = ttest2(data, data2,"Tail","right","Alpha", alpha_ki);
-    t0 = tinv(procentKI/100, stats.df);
+    t0 = tinv(1-alpha_ki, stats.df);
 
 elseif testtype == "left"
 
     [h,p,ci,stats] = ttest2(data, data2,"Tail","left","Alpha", alpha_ki);
-    t0 = tinv(procentKI/100, stats.df);
+    t0 = tinv(alpha_ki, stats.df);
 
 elseif testtype == "both"
 
     [h,p,ci,stats] = ttest2(data, data2,"Tail","both","Alpha", alpha_ki/2);
-    t0 = tinv((procentKI/100 + alpha_ki/2), stats.df);
+    t0 = tinv(alpha_ki/2, stats.df);
 
 end
 
@@ -79,7 +79,7 @@ disp("t-værdiens formel")
 if testtype == "both"
     displayFormula("t_df_alpha/2 = -tinv*(alpha/2 * df)")
 else
-displayFormula("t_df_alpha = -tinv*(alpha * df)")
+    displayFormula("t_df_alpha = -tinv*(alpha * df)")
 end
 disp("-----------------------------------------------------------------")
 
@@ -106,16 +106,32 @@ vars = [var1; var2];
 stds = [std1;std2];
 ns = [nn1; nn2];
 
-varnames1 = ["Datanavne","Middelværdier","Spredning","standardafv.","Datapunkter"];
+if testtype == "both"
 
-disp(table(names, ybars, vars, stds, ns, VariableNames=varnames1))
+    varnames1 = ["Datanavne","Middelværdier","Spredning","standardafv.","Datapunkter"];
 
-% beregnede værdier
-bvals = [dfs;S;sp;t;t0;p;h];
+    disp(table(names, ybars, vars, stds, ns, VariableNames=varnames1))
 
-varnames2 = ["Frihedsgrader","Pooled varians","Pooled spredning","Teststatistik","t0","p-værdi","h-værdi"];
+    % beregnede værdier
+    bvals = [dfs;S;sp;t;t0;p;h];
 
-disp(table(dfs,S,sp,t,t0,p,h, VariableNames=varnames2))
+    varnames2 = ["Frihedsgrader","Pooled varians","Pooled spredning","Nedre grænse","Øvre grænse","Teststatistik","p-værdi","h-værdi"];
+
+    disp(table(dfs,S,sp,t0,-t0,t,p,h, VariableNames=varnames2))
+
+else
+    varnames1 = ["Datanavne","Middelværdier","Spredning","standardafv.","Datapunkter"];
+
+    disp(table(names, ybars, vars, stds, ns, VariableNames=varnames1))
+
+    % beregnede værdier
+    bvals = [dfs;S;sp;t0;t;p;h];
+
+    varnames2 = ["Frihedsgrader","Pooled varians","Pooled spredning","Grænse","Teststatistik","p-værdi","h-værdi"];
+
+    disp(table(dfs,S,sp,t0,t,p,h, VariableNames=varnames2))
+end
+
 
 
 %----------------%
@@ -127,15 +143,16 @@ pd = tpdf(xs, stats.df);
 
 tvalpdf = tpdf(t, stats.df);
 
+figure
 plot(xs, pd, "DisplayName","Students t-fordeling")
 hold on
 if testtype == "right" || testtype == "left"
-    xline(t0, '--', "DisplayName","Kritiske grænse")
+    xline(t0, 'k--', "DisplayName","Kritiske grænse")
 
 
 elseif testtype == "both"
-    xline(-abs(t0), '-.', "DisplayName","Kritiske nedre grænse")
-    xline(abs(t0), '--', "DisplayName","Kritiske øvre grænse")
+    xline(-abs(t0), 'k--', "DisplayName","Kritiske nedre grænse")
+    xline(abs(t0), 'k--', "DisplayName","Kritiske øvre grænse")
 
 end
 
@@ -161,7 +178,7 @@ else
     disp("Da h = 0 forkastes nulhypotesen ikke")
     disp("Ydermere ses det også at t-værdien " + t + " ikke overstiger den kritiske grænse på " + t0)
     %disp("Samt at p-værdien på " + p + " ikke overstiger " + alpha_ki)
-    
+
 end
 
 OP.stats = stats;
