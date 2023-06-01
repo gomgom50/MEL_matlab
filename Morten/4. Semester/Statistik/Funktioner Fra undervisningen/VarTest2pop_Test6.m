@@ -18,7 +18,7 @@ if testtype == "right"
 elseif testtype == "left"
 
     [h,p,ci,stats] = vartest2(data, data2,"Tail","left","Alpha", alpha_ki);
-    t0 = finv(procentKI/100, stats.df1, stats.df2);
+    t0 = finv(1-procentKI/100, stats.df1, stats.df2);
 
 elseif testtype == "both"
 
