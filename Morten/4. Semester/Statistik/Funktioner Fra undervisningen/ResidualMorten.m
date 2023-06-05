@@ -55,8 +55,8 @@ outlier = rst_limit_array';
 
 
 % anal.data = table(x(:,1),x(:,2), y, lev, rst, levrage, outlier, yhat, yci, resid);
-varnames = ["Regressor 1","Regressor 2","Afhængig variabel","Hat-diagonal","R-student","Løftestangspunkter","Outliers"];
-anal.data = table(x(:,1),x(:,2), y, lev, rst, levrage, outlier,VariableNames=varnames);
+varnames = ["x","y","Hat-diagonal","R-student","Løftestangspunkter","Outliers"];
+anal.data = table(x(:,1), y, lev, rst, levrage, outlier,VariableNames=varnames);
 
 varnames2 = ["Regressorer","Datapunkter","Løftepunkt max","R-student max"];
 anal.data2 = table(k,n,lev_limit,rst_limit,VariableNames=varnames2);

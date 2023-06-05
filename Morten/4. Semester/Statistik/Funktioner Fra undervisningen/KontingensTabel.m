@@ -16,6 +16,7 @@ colfreq = colsum/total;
 
 E = zeros(rows, cols);
 
+% Her i loopet udregnes kontingenstabellens værdier
 for i = 1:rows
     for j = 1:cols
         E(i,j) = total*rowfreq(i)*colfreq(j);
@@ -23,13 +24,15 @@ for i = 1:rows
 end
 
 
+% bare datanavne
+names = ["Intakt forventet","Defekt forventet"];
 for k = 1:rows
-    datanames(k,1) = "Menu " + string(k);
+    datanames(k,1) = names(k);
 
 end
 
 
-disp(table(datanames, E, 'VariableNames',["Data navn", "SL1 | SL2"]))
+disp(table(datanames, E, 'VariableNames',["Data navn", "Maskine A | Maskine B | Maskine C"]))
 
 
 
