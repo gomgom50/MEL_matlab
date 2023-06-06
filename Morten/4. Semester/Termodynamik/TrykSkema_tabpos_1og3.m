@@ -46,6 +46,8 @@ grav = 9.82;
 
 eneq = @(p, c, zf) p + c^2/(2*grav) + zf;
 
+tab_ind = find(tabs == 0);
+
 EN(1) = eneq(trykhs(1), cs(1), hs(1));
 EN(2) = EN(1) - tabs(1);
 EN(4) = eneq(trykhs(2), cs(4), hs(4));
