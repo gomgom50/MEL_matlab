@@ -1,0 +1,1 @@
+from trianglesolver import solve, degree
