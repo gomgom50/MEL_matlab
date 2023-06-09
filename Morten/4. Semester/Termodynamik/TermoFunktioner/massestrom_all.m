@@ -32,7 +32,7 @@ inputs(ind) = OP;
 
 
 names = ["Phi 0";"Massestrøm";"Entalpi h1";"Entalpi h4"];
-units = ["W";"kg/s";"J/kg*K";"J/kg*K"];
+units = ["W";"kg/s";"J/kg";"J/kg"];
 
 disp(table(names,round(inputs,2)',units,VariableNames=["Variabel","Størrelse","Enhed"]))
 
