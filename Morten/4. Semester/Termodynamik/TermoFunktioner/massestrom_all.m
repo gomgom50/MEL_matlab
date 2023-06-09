@@ -34,6 +34,6 @@ inputs(ind) = OP;
 names = ["Phi 0";"Massestrøm";"Entalpi h1";"Entalpi h4"];
 units = ["W";"kg/s";"J/kg*K";"J/kg*K"];
 
-disp(table(names,inputs',units,VariableNames=["Variabel","Størrelse","Enhed"]))
+disp(table(names,round(inputs,2)',units,VariableNames=["Variabel","Størrelse","Enhed"]))
 
 end
