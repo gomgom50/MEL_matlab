@@ -1,4 +1,4 @@
-function UdV = UdskiltVandstrom(UdskildtVand, qml, x1, x2, unit)
+function UdV = UdskiltVandstrom(UdskildtVand, qml, x1, x2)
 
 
 
@@ -26,12 +26,12 @@ disp("---------------------------------------------------")
 
 
 
-OP = vpa(abs(subs(sol,symbols,inputs)),4);
+UdV = vpa(abs(subs(sol,symbols,inputs)),4);
 
 
 
 disp("Resultat og brugte værdier ses i nedenstående skema")
-inputs(ind) = OP;
+inputs(ind) = UdV;
 
 
 names = ["Udskildt vandstrøm";"Tør luft massestrøm";inputname(3);inputname(4)];

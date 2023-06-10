@@ -35,7 +35,7 @@ inputs(ind) = OP;
 
     
 
-names = [inputname(1);inputname(2);inputname(3);inputname(4);inputname(5)];
+names = [inputname(1);"Massestrøm";inputname(3);inputname(4);inputname(5)];
 units = ["W";"kg/s";"J/kg*K";"J/kg*K";"W"];
 
 disp(table(names,round(inputs,2)',units,VariableNames=["Variabel","Størrelse","Enhed"]))
