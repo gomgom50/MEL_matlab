@@ -31,7 +31,7 @@ disp("Resultat og brugte værdier ses i nedenstående skema")
 inputs(ind) = OP;
 
 
-names = ["Phi ";"Massestrøm";"Entalpi h1";"Entalpi h4"];
+names = ["Phi ";"Massestrøm";inputname(3);inputname(4)];
 units = ["W";"kg/s";"J/kg";"J/kg"];
 
 disp(table(names,round(inputs,2)',units,VariableNames=["Variabel","Størrelse","Enhed"]))

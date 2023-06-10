@@ -37,7 +37,7 @@ inputs(ind) = OP;
 
 inputs = [Pis, inputs];
 
-names = ["Phi isentrop";"Massestrøm";"Entalpi h1";"Entalpi h2s";"Akseleffekt";"Isentrop virkningsgrad"];
+names = ["Phi isentrop";"Massestrøm";inputname(2);inputname(3);inputname(4);"Isentrop virkningsgrad"];
 units = ["W";"kg/s";"J/kg*K";"J/kg*K";"W";"-"];
 
 disp(table(names,round(inputs,2)',units,VariableNames=["Variabel","Størrelse","Enhed"]))

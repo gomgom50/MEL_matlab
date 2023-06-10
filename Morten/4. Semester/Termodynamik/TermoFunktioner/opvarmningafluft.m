@@ -40,7 +40,7 @@ disp("---------------------------------------------------------")
 
 
 vars = [luft_opvarm_nedkol;h1;h2;qml];
-names = ["Varmestrøm";"Entalpi 1";"Entalpi 2";"Tør luft qm"];
+names = ["Varmestrøm";inputname(2);inputname(3);"Tør luft qm"];
 units = ["W";"J/kg";"J/kg";fakunit];
 
 disp(table(names,vars,units, VariableNames=["Navn","Størrelse","Enhed"]))

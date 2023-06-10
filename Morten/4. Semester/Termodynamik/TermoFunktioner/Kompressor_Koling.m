@@ -2,17 +2,17 @@ function OP = Kompressor_Koling(phik, qmr, h1, h2, Pa)
 
 % Det input der skal findes sættes til nan
 
-syms Phi_k q_mR h_1 h_2 P_a
+syms Phi_kt q_mR h_1 h_2 P_a
 
 inputs = [phik, qmr, h1, h2, Pa];
-symbols = [Phi_k q_mR h_1 h_2 P_a];
+symbols = [Phi_kt q_mR h_1 h_2 P_a];
 
 
 var = isnan(inputs);
 ind = find(var==1);
 
 disp("Energiligningen opstilles:")
-eq = q_mR*(h_1 - h_2) - Phi_k + P_a == 0
+eq = q_mR*(h_1 - h_2) - Phi_kt + P_a == 0
 
 disp("---------------------------------------------------")
 disp("Hvor Pa er:")
@@ -35,7 +35,7 @@ inputs(ind) = OP;
 
     
 
-names = ["Phi k";"Massestrøm";"Entalpi h1";"Entalpi h2";"Akseleffekt"];
+names = [inputname(1);inputname(2);inputname(3);inputname(4);inputname(5)];
 units = ["W";"kg/s";"J/kg*K";"J/kg*K";"W"];
 
 disp(table(names,round(inputs,2)',units,VariableNames=["Variabel","Størrelse","Enhed"]))
