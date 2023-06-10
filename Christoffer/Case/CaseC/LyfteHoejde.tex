@@ -1,0 +1,399 @@
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and export to LaTeX again.
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage[table]{xcolor}
+\usepackage{matlab}
+
+\sloppy
+\epstopdfsetup{outdir=./}
+\graphicspath{ {./LyfteHoejde_images/} }
+
+\begin{document}
+
+\begin{matlabcode}
+u = symunit
+\end{matlabcode}
+\begin{matlaboutput}
+u = 
+  symbolicUnitsCollection with units:
+
+      ampere: [A]
+      kelvin: [K]
+    kilogram: [kg]
+       meter: [m]
+        mole: [mol]
+      second: [s]
+     candela: [cd]
+
+  Show all units.
+
+\end{matlaboutput}
+\begin{matlabcode}
+% Givende værdiger
+reg_h_tab = 0.68 * u.m %Fundet fra tabel 4 efter omregning 
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+reg\_h\_tab = 
+
+\hskip1em $\displaystyle \frac{17}{25}\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+psi_butterfly = 1
+\end{matlabcode}
+\begin{matlaboutput}
+psi_butterfly = 1
+\end{matlaboutput}
+\begin{matlabcode}
+psi_kontra = 2
+\end{matlabcode}
+\begin{matlaboutput}
+psi_kontra = 2
+\end{matlaboutput}
+\begin{matlabcode}
+g = 9.82 * u.m/u.s^2
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+g = 
+
+\hskip1em $\displaystyle \frac{491}{50}\,\frac{{\mathrm{m}}}{{{\mathrm{s}}}^2 }$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+d = 0.051 * u.m
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+d = 
+
+\hskip1em $\displaystyle \frac{51}{1000}\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+q_V = 0.005 * u.m^3/u.s
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+q\_V = 
+
+\hskip1em $\displaystyle \frac{1}{200}\,\frac{{{\mathrm{m}}}^3 }{{\mathrm{s}}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+c = vpa(q_V/((pi/4)*(d^2)))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+c = 
+
+\hskip1em $\displaystyle 2.4475962028742073936006730237988\,\frac{{\mathrm{m}}}{{\mathrm{s}}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+rho = 998.168 * u.kg/u.m^3
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+rho = 
+
+\hskip1em $\displaystyle \frac{8779978579791315}{8796093022208}\,\frac{{\textrm{kg}}}{{{\mathrm{m}}}^3 }$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+\end{matlabcode}
+
+
+\vspace{1em}
+\begin{matlabcode}
+%Tab
+%ventiler
+Butterfly_h_tab = psi_butterfly * (c^2/(2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+Butterfly\_h\_tab = 
+
+\hskip1em $\displaystyle 0.30502684176803656809770322619213\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+Kontra_h_tab = psi_kontra * (c^2/(2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+Kontra\_h\_tab = 
+
+\hskip1em $\displaystyle 0.61005368353607313619540645238427\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+%Indløb
+psi_indloeb = 0.5
+\end{matlabcode}
+\begin{matlaboutput}
+psi_indloeb = 0.5000
+\end{matlaboutput}
+\begin{matlabcode}
+indloeb_h_tab = psi_indloeb * (c^2/(2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+indloeb\_h\_tab = 
+
+\hskip1em $\displaystyle 0.15251342088401828404885161309607\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+%udløb
+psi_indloeb = 1
+\end{matlabcode}
+\begin{matlaboutput}
+psi_indloeb = 1
+\end{matlaboutput}
+\begin{matlabcode}
+udloeb_h_tab = psi_indloeb * (c^2/(2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+udloeb\_h\_tab = 
+
+\hskip1em $\displaystyle 0.30502684176803656809770322619213\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+%bøjning
+psi_indloeb = 0.3
+\end{matlabcode}
+\begin{matlaboutput}
+psi_indloeb = 0.3000
+\end{matlaboutput}
+\begin{matlabcode}
+boejning_h_tab = psi_indloeb * (c^2/(2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+boejning\_h\_tab = 
+
+\hskip1em $\displaystyle 0.09150805253041097042931096785764\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+%Varmeveksler
+veksler_h_tab = unitConvert(unitConvert(0.16 * u.bar, u.Pa) / (rho * g), "SI")
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+veksler\_h\_tab = 
+
+\hskip1em $\displaystyle \frac{1407374883553280000}{862193896535507133}\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+\end{matlabcode}
+
+
+\begin{matlabcode}
+%Tab i rør
+%antages en k_s = 0.025
+lambda = 0.031 %Figur 4.10
+\end{matlabcode}
+\begin{matlaboutput}
+lambda = 0.0310
+\end{matlaboutput}
+\begin{matlabcode}
+L(1) = 4 * u.m
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+L = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+4\,{\mathrm{m}} & 0 & 2\,{\mathrm{m}} & 0 & 2\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+hf_roer(1) = lambda * (L(1) * c^2/(d*2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+hf\_roer = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+0.74163388978895165576696470682009\,{\mathrm{m}} & 0 & 0.37081694489447582788348235341004\,{\mathrm{m}} & 0 & 0.37081694489447582788348235341004\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+L(3) = 10 * u.m
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+L = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+4\,{\mathrm{m}} & 0 & 10\,{\mathrm{m}} & 0 & 2\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+hf_roer(3) = lambda * (L(3) * c^2/(d*2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+hf\_roer = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+0.74163388978895165576696470682009\,{\mathrm{m}} & 0 & 1.8540847244723791394174117670502\,{\mathrm{m}} & 0 & 0.37081694489447582788348235341004\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+L(5) = 15 * u.m
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+L = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+4\,{\mathrm{m}} & 0 & 10\,{\mathrm{m}} & 0 & 15\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+hf_roer(5) = lambda * (L(5) * c^2/(d*2*g))
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+hf\_roer = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+0.74163388978895165576696470682009\,{\mathrm{m}} & 0 & 1.8540847244723791394174117670502\,{\mathrm{m}} & 0 & 2.7811270867085687091261176505753\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+\end{matlabcode}
+
+
+\begin{matlabcode}
+%Kendte højder og forskelle
+z(1) = 5 * u.m;
+H(1) = z(1);
+z(2) = 1 * u.m;
+z(3) = 1 * u.m;
+z(4) = 7 * u.m;
+z(5) = 10 * u.m;
+\end{matlabcode}
+
+
+\begin{matlabcode}
+%Forskelle i højder (delta)
+Delta_h(1) = (z(2) - z(1)) + Butterfly_h_tab + indloeb_h_tab + hf_roer(1);
+Delta_h(3) = (z(4) - z(2)) + Butterfly_h_tab + boejning_h_tab + hf_roer(3) + Kontra_h_tab;
+Delta_h(5) = (z(5) - z(4)) + veksler_h_tab + udloeb_h_tab + hf_roer(5) + boejning_h_tab + reg_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+Delta\_h = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+-2.8008258475589934920864804538917\,{\mathrm{m}} & 0 & 8.8606733023068998141398324134843\,{\mathrm{m}} & 0 & 8.4899802903901319708463759550723\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+DeltaH = Delta_h(1)+Delta_h(3)+Delta_h(5) %Pumpen skal kunne ydde dette. 
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+DeltaH = 
+
+\hskip1em $\displaystyle 14.549827745138038292899727914665\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+h(1) = Butterfly_h_tab + indloeb_h_tab + hf_roer(1);
+h(2) = H(3) - H(2);
+h(3) = Butterfly_h_tab + boejning_h_tab + hf_roer(3) + Kontra_h_tab;
+h(4) = veksler_h_tab + udloeb_h_tab + hf_roer(5) + boejning_h_tab + reg_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+h = 
+
+\hskip1em $\displaystyle \left(\begin{array}{cccc}
+1.1991741524410065079135195461083\,{\mathrm{m}} & 10.656249823746042100123163203859\,{\mathrm{m}} & 2.8606733023068998141398324134843\,{\mathrm{m}} & 5.4899802903901319708463759550723\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+H(2) = H(1) - Butterfly_h_tab - indloeb_h_tab - hf_roer(1); %med strøm retningen
+H(5) = 10 * u.m;
+H(4) = H(5) + veksler_h_tab + udloeb_h_tab + hf_roer(5) + boejning_h_tab + reg_h_tab; %Imod strøm retningenM
+H(3) = H(4) + Butterfly_h_tab + boejning_h_tab + hf_roer(3) + Kontra_h_tab %Imod strøm retningen
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+H = 
+
+\hskip1em $\displaystyle \left(\begin{array}{ccccc}
+5\,{\mathrm{m}} & 3.8008258475589934920864804538917\,{\mathrm{m}} & 18.350653592697031784986208368557\,{\mathrm{m}} & 15.489980290390131970846375955072\,{\mathrm{m}} & 10\,{\mathrm{m}}
+\end{array}\right)$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+
+
+Butterfly_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+Butterfly\_h\_tab = 
+
+\hskip1em $\displaystyle 0.30502684176803656809770322619213\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+indloeb_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+indloeb\_h\_tab = 
+
+\hskip1em $\displaystyle 0.15251342088401828404885161309607\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+hf_roer(1)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+ans = 
+
+\hskip1em $\displaystyle 0.74163388978895165576696470682009\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+boejning_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+boejning\_h\_tab = 
+
+\hskip1em $\displaystyle 0.09150805253041097042931096785764\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+hf_roer(3)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+ans = 
+
+\hskip1em $\displaystyle 1.8540847244723791394174117670502\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+Kontra_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+Kontra\_h\_tab = 
+
+\hskip1em $\displaystyle 0.61005368353607313619540645238427\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+vpa(veksler_h_tab,5)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+ans = 
+
+\hskip1em $\displaystyle 1.6323\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+udloeb_h_tab
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+udloeb\_h\_tab = 
+
+\hskip1em $\displaystyle 0.30502684176803656809770322619213\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+\begin{matlabcode}
+hf_roer(5)
+\end{matlabcode}
+\begin{matlabsymbolicoutput}
+ans = 
+
+\hskip1em $\displaystyle 2.7811270867085687091261176505753\,{\mathrm{m}}$
+\end{matlabsymbolicoutput}
+
+\end{document}
