@@ -13,7 +13,8 @@ ind = find(var==1);
 
 disp("Energiligningen opstilles:")
 eq = q_mR*(h_1 - h_4) + Phi == 0
-
+disp("De korrekte entalpi-navne fremgår ikke altid af formlen")
+disp("I tabellen nedenfor fremgår de med korrekt navn samt værdi og enhed")
 disp("---------------------------------------------------")
 
 disp("Der løses for: " + string(symbols(ind)))

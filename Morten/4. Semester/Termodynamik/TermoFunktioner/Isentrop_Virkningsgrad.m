@@ -11,6 +11,8 @@ if TempEllerEntalpi == "temp"
 
     disp("Følgende formel er brugt")
     disp("---------------------------------------------------")
+    disp("De korrekte temperatur-navne fremgår ikke altid af formlen")
+    disp("I tabellen nedenfor fremgår de med korrekt navn samt værdi og enhed")
     if KompEllerTurbine == "komp"
         displayFormula("(T_2s - T_1)/(T_2 - T_1) = eta_S")
         eq = (T_2s - T_1)/(T_2 - T_1) == eta_S;
@@ -29,6 +31,8 @@ elseif TempEllerEntalpi == "entalpi"
 
     disp("Følgende formel er brugt")
     disp("---------------------------------------------------")
+    disp("De korrekte entalpi-navne fremgår ikke altid af formlen")
+    disp("I tabellen nedenfor fremgår de med korrekt navn samt værdi og enhed")
     if KompEllerTurbine == "komp"
         displayFormula("eta_S = (h_2s - h_1)/(h_2 - h_1)")
         eq = eta_S == (h_2s - h_1)/(h_2 - h_1);
