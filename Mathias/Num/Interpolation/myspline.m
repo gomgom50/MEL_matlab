@@ -26,6 +26,6 @@ elseif strcmp(type,'Clamped')
     yy = spline(x,y,xx)
 
 elseif  strcmp(type,'pchip')
-    yy = interp1(x,y,xx,’pchip’)
+    yy = interp1(x,y,xx,'pchip')
 
 end
