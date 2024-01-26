@@ -3,19 +3,19 @@ classdef FluidMechanics
     %   Detailed explanation goes here
 
     properties
-        GasType
+        FluidType
         ContainerType
         GasConstant
     end
 
     methods
-        function obj = FluidMechanics(GasType, ContainerType)
-            %UNTITLED3 Construct an instance of this class
-            %   Detailed explanation goes here
-            obj.GasType = GasType;
-            obj.ContainerType = ContainerType;
+        function obj = FluidMechanics(FluidType, ContainerType)
+            %
 
-            switch GasType
+            obj.FluidType       = FluidType;
+            obj.ContainerType   = ContainerType;
+
+            switch FluidType
                 case "Helium"
                     obj.GasConstant = 2077;
                 case "Argon"
@@ -25,4 +25,5 @@ classdef FluidMechanics
 
         
     end
+    
 end
