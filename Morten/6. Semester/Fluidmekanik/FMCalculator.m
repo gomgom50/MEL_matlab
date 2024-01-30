@@ -25,6 +25,9 @@ classdef FMCalculator < FluidMechanics
                 optional.GC             = nan;
             end
 
+            % Insert check for FluidProperties: If field
+            % Include all forms of IGL
+
             if ~isnan(obj.GasConstant)
                 optional.GC = obj.GasConstant;
             end
