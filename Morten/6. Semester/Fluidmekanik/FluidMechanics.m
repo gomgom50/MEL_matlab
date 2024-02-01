@@ -4,22 +4,24 @@ classdef FluidMechanics
 
     properties
         FluidType
-        ContainerType
-        GasConstant
+        FluidProperties
     end
 
     methods
-        function obj = FluidMechanics(FluidType, ContainerType)
-            %
+        function obj = FluidMechanics(FluidType, KnownProperties)
+
 
             obj.FluidType       = FluidType;
-            obj.ContainerType   = ContainerType;
 
             switch FluidType
                 case "Helium"
-                    obj.GasConstant = 2077;
+                    obj.FluidProperties.GC = 2077;
                 case "Argon"
-                    obj.GasConstant = 1337;
+                    obj.FluidProperties.GC = 1337;
+                case "Gasoline"
+                    obj.FluidProperties.Density = 715;
+                case "Ethyl"
+                    obj.FluidProperties.Density = 789;
             end
         end
 

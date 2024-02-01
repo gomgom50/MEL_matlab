@@ -3,14 +3,21 @@ classdef FMCalculator < FluidMechanics
     %   Detailed explanation goes here
 
     properties
-        Volume
-        FluidProperties
+        % FluidProprties
     end
 
     methods
-        function obj = FMCalculator(FluidType, ContainerType)
+        function obj = FMCalculator(FluidType, KnownProperties)
+            % KnownProperties must be a struct containing known properties
+            % of a fluid such as Density, Temperature etc.
 
-            obj@FluidMechanics(FluidType, ContainerType);
+            obj@FluidMechanics(FluidType, KnownProperties);
+
+            FPfns = fieldnames(KnownProperties);
+
+            for i = 1:length(FPfns)
+                obj.FluidProperties.(FPfns{i}) = KnownProperties.(FPfns{i});
+            end
 
         end
 
@@ -24,30 +31,22 @@ classdef FMCalculator < FluidMechanics
                 optional.Temperature    = nan;
                 optional.GC             = nan;
             end
+          
 
-            % Insert check for FluidProperties: If field
-            % Include all forms of IGL
+            % Write optionals to FP
+            optional = obj.OptFProps(optional);
 
-            if ~isnan(obj.GasConstant)
-                optional.GC = obj.GasConstant;
-            end
+            SolvedVar = FMCalculator.FindSolVar(optional);
 
             OPTfns = fieldnames(optional);
-            for i = 1:length(OPTfns)
-                if isnan(optional.(OPTfns{i}))
-                    SolvedVar = string(OPTfns{i});
-                end
-            end
 
             syms Pressure Density Temperature GC
 
             IGLeq = Pressure == Density*GC*Temperature;
 
-            inputs = optional;
+            ResultIGL = FMCalculator.UnkCalc(IGLeq, optional);
 
-            ResultIGL = FMCalculator.UnkCalc(IGLeq, inputs);
-
-            fprintf("Solved for: " + SolvedVar + " = %.3f", ResultIGL)
+            % fprintf("Solved for: " + SolvedVar + " = %.3f", ResultIGL)
 
             for i = 1:length(OPTfns)
                 if isnan(optional.(OPTfns{i}))
@@ -64,12 +63,60 @@ classdef FMCalculator < FluidMechanics
             arguments
                 obj
 
-                optional.Pressure       = nan;
                 optional.Density        = nan;
+                optional.Mass           = nan;
                 optional.Volume         = nan;
             end
 
+            % Write optionals to FP
+
+            
+            optional = obj.OptFProps(optional);
+
+            SolvedVar = FMCalculator.FindSolVar(optional);
+
+            OPTfns = fieldnames(optional);
+
+            syms Density Mass Volume
+
+            PMVeq = Density == Mass/Volume;
+
+            ResultIGL = FMCalculator.UnkCalc(PMVeq, optional);
+
+            % fprintf("Solved for: " + SolvedVar + " = %.3f", ResultIGL)
+
+            for i = 1:length(OPTfns)
+                if isnan(optional.(OPTfns{i}))
+                    obj.FluidProperties.(SolvedVar) = ResultIGL;
+                else
+                    obj.FluidProperties.(OPTfns{i}) = optional.(OPTfns{i});
+                end
+
+            end
+
+            
+
         
+        end
+
+        % Technicality functions
+
+        function optional = OptFProps(obj, OptStruct)
+            OPTfns = fieldnames(OptStruct);
+            % FPfns = fieldnames(obj.FluidProperties);
+
+            for i = 1:length(OPTfns)
+                if isfield(obj.FluidProperties, OPTfns{i})
+                    optional.(OPTfns{i}) = obj.FluidProperties.(OPTfns{i});
+                elseif ~isnan(OptStruct.(OPTfns{i}))
+                    optional.(OPTfns{i}) = OptStruct.(OPTfns{i});
+                    obj.FluidProperties.(OPTfns{i}) = OptStruct.(OPTfns{i});
+                else
+                    optional.(OPTfns{i}) = nan;
+                end
+
+            end
+
         end
 
 
@@ -97,6 +144,17 @@ classdef FMCalculator < FluidMechanics
 
                 EQsol = solve(equation, SolVar);
                 sol = double(subs(EQsol, DependVars, DependVarsVals));
+            end
+
+            function SolvedVar = FindSolVar(OPTstruct)
+
+                OPTfns = fieldnames(OPTstruct);
+
+                for i = 1:length(OPTfns)
+                    if isnan(OPTstruct.(OPTfns{i}))
+                        SolvedVar = string(OPTfns{i});
+                    end
+                end
             end
 
 
