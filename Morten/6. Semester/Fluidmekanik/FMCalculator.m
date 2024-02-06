@@ -83,7 +83,6 @@ classdef FMCalculator < FluidMechanics
 
             ResultIGL = FMCalculator.UnkCalc(PMVeq, optional);
 
-            % fprintf("Solved for: " + SolvedVar + " = %.3f", ResultIGL)
 
             for i = 1:length(OPTfns)
                 if isnan(optional.(OPTfns{i}))
@@ -94,9 +93,49 @@ classdef FMCalculator < FluidMechanics
 
             end
 
-            
+        end
 
-        
+        function obj = Specific_Weight(obj, optional)
+            arguments
+                obj
+
+                optional.Gamma      = nan;
+                optional.Weight     = nan;
+                optional.Volume     = nan;
+                optional.Density    = nan;
+            end
+
+            % Write optionals to F
+
+            grav = 9.81; % Make constants an inherent trait of the class
+
+            
+            optional = obj.OptFProps(optional);
+
+            SolvedVar = FMCalculator.FindSolVar(optional);
+
+            OPTfns = fieldnames(optional);
+
+            syms Weight Volume Density Gamma
+
+            if isnan(optional.Weight) || isnan(optional.Volume)
+                SWeq = Gamma == Weight/Volume;
+            else
+                SWeq = Gamma == Density*grav;
+            end
+
+            ResultIGL = FMCalculator.UnkCalc(SWeq, optional);
+
+
+            for i = 1:length(OPTfns)
+                if isnan(optional.(OPTfns{i}))
+                    obj.FluidProperties.(SolvedVar) = ResultIGL;
+                else
+                    obj.FluidProperties.(OPTfns{i}) = optional.(OPTfns{i});
+                end
+
+            end
+            
         end
 
         % Technicality functions
