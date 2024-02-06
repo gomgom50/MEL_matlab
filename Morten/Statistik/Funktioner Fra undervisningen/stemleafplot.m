@@ -52,7 +52,7 @@ p = round(p);
 % Condition V
 v = v(~isnan(v));
 v = v(:);
-v = roundn(v, -p);
+v = round(v, -p);
 
 % Organize stems and leaves
 allstems = floor(v./10^(p+1));
