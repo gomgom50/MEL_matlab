@@ -112,7 +112,7 @@ pd = tpdf(xs, stats.df);
 
 tvalpdf = tpdf(stats.tstat, stats.df);
 
-figure
+figure("Visible","on")
 plot(xs, pd, "DisplayName","Students t-fordeling")
 hold on
 if testtype == "right" || testtype == "left"
