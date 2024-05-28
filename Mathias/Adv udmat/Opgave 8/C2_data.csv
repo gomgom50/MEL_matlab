@@ -1,0 +1,15 @@
+Date:  21:18; tirsdag; maj 28;2024;
+Model name: Solution13b;;;;
+Study name: Hotspot(-Default<As Machined>-);;;;
+Plot type: Static nodal stress Stress1;;;;
+Result Type: P1 ;;;;
+;;;;
+;;;;
+Location  ;Value (N/mm^2 (MPa))  ;X (mm)  ;Y (mm)  ;Z (mm)
+14866;238,9;1925;4;104,24
+19945;198,2;1925;4;106,24
+14837;106,1;1925;4;108,24
+19946;93,1;1925;4;110,24
+14835;82,3;1925;4;112,24
+19947;74,7;1925;4;114,24
+14833;69,6;1925;4;116,24
