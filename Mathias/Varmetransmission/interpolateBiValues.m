@@ -1,6 +1,8 @@
 function [zeta1_interp, C1_interp] = interpolateBiValues(Bi_input)
  % INTERPOLATEBIVALUES Interpolates zeta1 and C1 values for a given Biot number
     %
+    % Table 5.1 values
+    %
     % This function takes a Biot number as input and returns the interpolated 
     % zeta1 and C1 values for three different geometric configurations: 
     % plane wall, infinite cylinder, and sphere. The interpolation is done 
